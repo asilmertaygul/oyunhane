@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Yörünge · Oyunhane</title>
+<meta name="theme-color" content="#0b0e2e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+  :root{
+    --bg:#0b0e2e; --bg2:#1a1f5c; --ink:#eef0ff; --dim:#9aa0d6;
+    --cyan:#5ce1e6; --gold:#ffd166; --coral:#ff7a59; --red:#ff4d6d; --card:rgba(16,20,64,.86);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:Rubik,system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+  .top{position:fixed;left:0;right:0;top:0;display:flex;align-items:center;justify-content:space-between;
+    padding:calc(10px + env(safe-area-inset-top)) 14px 0;pointer-events:none;z-index:3}
+  .top > *{pointer-events:auto}
+  .home{color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:7px 12px;border-radius:999px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px)}
+  .home:hover{background:rgba(255,255,255,.16)}
+  .hud{position:absolute;left:50%;transform:translateX(-50%);top:calc(8px + env(safe-area-inset-top));text-align:center;pointer-events:none}
+  .hud .sc{font-size:34px;font-weight:800;line-height:1;letter-spacing:.5px;text-shadow:0 2px 12px rgba(92,225,230,.35)}
+  .hud .mul{font-size:13px;font-weight:600;color:var(--gold);min-height:16px;margin-top:3px;transition:transform .15s}
+  .right{display:flex;gap:8px;align-items:center}
+  .best{font-size:13px;color:var(--dim);font-weight:600;text-align:right;line-height:1.15}
+  .best b{display:block;color:var(--ink);font-size:16px}
+  .snd{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);
+    color:var(--ink);font-size:16px;cursor:pointer;display:grid;place-items:center}
+  .ov{position:fixed;inset:0;display:grid;place-items:center;z-index:4;padding:16px;
+    background:radial-gradient(ellipse at center,rgba(11,14,46,.35),rgba(11,14,46,.8));transition:opacity .25s}
+  .ov.gizli{opacity:0;pointer-events:none}
+  .card{width:min(360px,100%);background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:22px;
+    padding:26px 22px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.45);backdrop-filter:blur(8px);
+    animation:pop .35s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{from{transform:scale(.9);opacity:0}to{transform:none;opacity:1}}
+  .card h1{font-size:40px;font-weight:800;letter-spacing:.5px;
+    background:linear-gradient(90deg,var(--cyan),var(--gold),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .card h2{font-size:24px;font-weight:800;color:var(--coral)}
+  .card p{color:var(--dim);font-size:15px;line-height:1.45;margin:12px 0 0}
+  .card p b{color:var(--ink)}
+  .big{font-size:56px;font-weight:800;line-height:1;margin-top:14px;color:var(--ink)}
+  .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-top:4px}
+  .stats{display:flex;justify-content:center;gap:22px;margin-top:14px;font-size:13px;color:var(--dim)}
+  .stats b{display:block;color:var(--ink);font-size:18px}
+  .rekor{display:inline-block;margin-top:10px;padding:4px 12px;border-radius:999px;background:var(--gold);color:#3a2600;font-weight:800;font-size:13px;animation:parla 1s ease-in-out infinite alternate}
+  @keyframes parla{to{box-shadow:0 0 18px var(--gold)}}
+  .btn{margin-top:20px;width:100%;padding:14px;border:0;border-radius:14px;font:inherit;font-size:18px;font-weight:800;
+    color:#0b0e2e;background:linear-gradient(180deg,#7ff0f3,var(--cyan));cursor:pointer;box-shadow:0 6px 0 #2a9ea3;transition:transform .08s}
+  .btn:active{transform:translateY(3px);box-shadow:0 3px 0 #2a9ea3}
+  .ipucu{font-size:12px;color:var(--dim);margin-top:10px;opacity:.8}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="top">
+  <a class="home" href="/">← Oyunhane</a>
+  <div class="hud"><div class="sc" id="skor">0</div><div class="mul" id="carpan"></div></div>
+  <div class="right">
+    <div class="best">En iyi<b id="enIyi">0</b></div>
+    <button class="snd" id="ses" aria-label="Sesi aç/kapat">🔊</button>
+  </div>
+</div>
+
+<div class="ov" id="giris">
+  <div class="card">
+    <h1>Yörünge</h1>
+    <p>Uydun gezegenin çevresinde kendiliğinden döner; <b>dokun</b> ya da <b>boşluğa bas</b>, iç ve dış yörünge arasında geç. Meteorlardan kaç, yıldızları art arda toplayıp çarpanı büyüt.</p>
+    <button class="btn" id="basla">Başla</button>
+    <div class="ipucu">Boşluk / Enter ile de başlar</div>
+  </div>
+</div>
+
+<div class="ov gizli" id="bitis">
+  <div class="card">
+    <h2>Uydun parçalandı!</h2>
+    <div class="big" id="sonSkor">0</div>
+    <div class="lbl">Skor</div>
+    <div id="rekorYeri"></div>
+    <div class="stats">
+      <div><b id="sYildiz">0</b>yıldız</div>
+      <div><b id="sKil">0</b>kıl payı</div>
+      <div><b id="sSure">0</b>saniye</div>
+    </div>
+    <div class="stats" style="margin-top:8px"><div>En iyi skor: <b style="display:inline" id="sEnIyi">0</b></div></div>
+    <button class="btn" id="tekrar">Tekrar oyna</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const TAU = Math.PI * 2;
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+  const $ = id => document.getElementById(id);
+  const elSkor = $('skor'), elCarpan = $('carpan'), elEnIyi = $('enIyi');
+  const ovGiris = $('giris'), ovBitis = $('bitis');
+
+  // ---------- en iyi skor ----------
+  const KEY = 'oyunhane-yorunge-eniyi';
+  let enIyi = 0;
+  try { enIyi = parseInt(localStorage.getItem(KEY), 10) || 0; } catch (e) {}
+  elEnIyi.textContent = enIyi;
+  function enIyiKaydet(v) { try { localStorage.setItem(KEY, String(v)); } catch (e) {} }
+
+  // ---------- ses (Web Audio) ----------
+  let ac = null, sesAcik = true;
+  try { sesAcik = localStorage.getItem('oyunhane-yorunge-ses') !== '0'; } catch (e) {}
+  $('ses').textContent = sesAcik ? '🔊' : '🔈';
+  function sesHazirla() {
+    if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ac = null; } }
+    if (ac && ac.state === 'suspended') ac.resume();
+  }
+  function ton(f, d, tip = 'sine', v = 0.12, f2 = null) {
+    if (!sesAcik || !ac) return;
+    const t = ac.currentTime, o = ac.createOscillator(), g = ac.createGain();
+    o.type = tip; o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    o.connect(g).connect(ac.destination); o.start(t); o.stop(t + d + 0.02);
+  }
+  function patlamaSesi() {
+    if (!sesAcik || !ac) return;
+    const t = ac.currentTime, n = Math.floor(ac.sampleRate * 0.6);
+    const b = ac.createBuffer(1, n, ac.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 2);
+    const s = ac.createBufferSource(), fl = ac.createBiquadFilter(), g = ac.createGain();
+    s.buffer = b; fl.type = 'lowpass'; fl.frequency.setValueAtTime(1800, t); fl.frequency.exponentialRampToValueAtTime(120, t + 0.6);
+    g.gain.value = 0.35; s.connect(fl).connect(g).connect(ac.destination); s.start(t);
+    ton(140, 0.5, 'sawtooth', 0.12, 40);
+  }
+  $('ses').addEventListener('click', e => {
+    e.stopPropagation(); sesAcik = !sesAcik; $('ses').textContent = sesAcik ? '🔊' : '🔈';
+    try { localStorage.setItem('oyunhane-yorunge-ses', sesAcik ? '1' : '0'); } catch (er) {}
+    if (sesAcik) { sesHazirla(); ton(660, 0.1); }
+  });
+
+  // ---------- ölçüler ----------
+  let W = 0, H = 0, DPR = 1, S = 0, CX = 0, CY = 0, R = [0, 0], PR = 0, MR = 0, YR = 0;
+  function boyutla() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    S = Math.min(W, H - 90, 760);
+    CX = W / 2; CY = H / 2 + 22;
+    R = [S * 0.24, S * 0.40];
+    PR = Math.max(7, S * 0.022);
+    MR = Math.max(10, S * 0.034);
+    YR = Math.max(8, S * 0.026);
+  }
+  window.addEventListener('resize', boyutla);
+  boyutla();
+
+  // ---------- arka plan yıldızları ----------
+  const gok = [];
+  for (let i = 0; i < 160; i++) gok.push({ a: Math.random() * TAU, d: Math.random(), s: Math.random() * 1.6 + 0.3, f: Math.random() * TAU });
+
+  // ---------- oyun durumu ----------
+  let durum = 'giris';       // giris | oyun | bitti
+  let th, w, halka, rr, zaman, skor, seri, yildizSay, kilSay, sonGecis, oncekiHalka;
+  let meteorlar, yildizlar, parcalar, yazilar, iz, sarsinti, mTimer, yTimer, olumZamani, flas;
+  function sifirla() {
+    th = -Math.PI / 2; w = 1.7; halka = 0; rr = R[0]; zaman = 0; skor = 0; seri = 0;
+    yildizSay = 0; kilSay = 0; sonGecis = -9; oncekiHalka = 0;
+    meteorlar = []; yildizlar = []; parcalar = []; yazilar = []; iz = []; sarsinti = 0; flas = 0;
+    mTimer = 1.0; yTimer = 0.4; olumZamani = 0;
+    hudGuncelle();
+  }
+  const carp = () => Math.min(5, 1 + Math.floor(seri / 4));
+  function hudGuncelle() {
+    elSkor.textContent = skor;
+    const c = carp();
+    elCarpan.textContent = durum === 'oyun' ? (c > 1 ? 'x' + c + ' çarpan' : (seri > 0 ? '●'.repeat(seri % 4) : '')) : '';
+  }
+  sifirla();
+
+  // açı farkı (-π, π]
+  const fark = (a, b) => { let d = (a - b) % TAU; if (d > Math.PI) d -= TAU; if (d <= -Math.PI) d += TAU; return d; };
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  // halkalar arasında geçiş için gereken açı boşluğu
+  const bosluk = () => w * 0.34 + 2 * (MR / R[0]);
+
+  function catisirMi(a, h, tur) {
+    const g = bosluk();
+    for (const m of meteorlar) {
+      if (m.gecti) continue;
+      const d = Math.abs(fark(m.a, a));
+      if (tur === 'm' && m.h !== h && d < g) return true;
+      if (tur === 'y' && m.h === h && d < g * 0.8) return true;
+    }
+    for (const y of yildizlar) {
+      if (y.gecti) continue;
+      const d = Math.abs(fark(y.a, a));
+      if (tur === 'y' && y.h !== h && d < g) return true;
+      if (tur === 'y' && y.h === h && d < 0.35) return true;
+      if (tur === 'm' && y.h === h && d < g * 0.8) return true;
+    }
+    return false;
+  }
+
+  function meteorDogur() {
+    for (let k = 0; k < 6; k++) {
+      const h = Math.random() < 0.5 ? 0 : 1;
+      const a = th + w * rnd(1.05, 1.55);
+      if (catisirMi(a, h, 'm')) continue;
+      const kose = [], n = 9;
+      for (let i = 0; i < n; i++) kose.push(rnd(0.72, 1.08));
+      meteorlar.push({ a, h, t: 0, don: rnd(-2, 2), rot: Math.random() * TAU, kose, gecti: false, kil: false, ol: 1 });
+      // ileri aşamada yan yana ikinci meteor (uzun duvar)
+      if (zaman > 35 && Math.random() < Math.min(0.45, (zaman - 35) / 120)) {
+        const a2 = a + (2.1 * MR) / R[h];
+        if (!catisirMi(a2, h, 'm')) {
+          const k2 = []; for (let i = 0; i < n; i++) k2.push(rnd(0.72, 1.08));
+          meteorlar.push({ a: a2, h, t: -0.08, don: rnd(-2, 2), rot: Math.random() * TAU, kose: k2, gecti: false, kil: false, ol: 1 });
+        }
+      }
+      return;
+    }
+  }
+  function yildizDogur() {
+    for (let k = 0; k < 6; k++) {
+      const h = Math.random() < 0.5 ? 0 : 1;
+      const a = th + w * rnd(1.0, 1.5);
+      if (catisirMi(a, h, 'y')) continue;
+      const altin = zaman > 20 && Math.random() < 0.08;
+      yildizlar.push({ a, h, t: 0, gecti: false, altin, ol: 1 });
+      return;
+    }
+  }
+
+  function poz(a, r) { return [CX + Math.cos(a) * r, CY + Math.sin(a) * r]; }
+
+  function patlat(x, y, renkler, n, hiz) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * TAU, v = rnd(0.3, 1) * hiz;
+      parcalar.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, t: 0, life: rnd(0.4, 0.9), r: rnd(1.5, 3.5), c: renkler[i % renkler.length] });
+    }
+  }
+  function yaz(x, y, s, c, buyuk) { yazilar.push({ x, y, s, c, t: 0, b: buyuk ? 1 : 0 }); }
+
+  // ---------- kontroller ----------
+  function gec() {
+    if (durum !== 'oyun') return;
+    oncekiHalka = halka; halka = 1 - halka; sonGecis = zaman;
+    ton(halka ? 520 : 390, 0.09, 'triangle', 0.08, halka ? 760 : 300);
+  }
+  function basla() {
+    sesHazirla();
+    sifirla(); durum = 'oyun';
+    ovGiris.classList.add('gizli'); ovBitis.classList.add('gizli');
+    hudGuncelle(); ton(440, 0.12, 'triangle', 0.1, 880);
+  }
+  $('basla').addEventListener('click', basla);
+  $('tekrar').addEventListener('click', basla);
+  cv.addEventListener('pointerdown', e => { e.preventDefault(); sesHazirla(); gec(); });
+  window.addEventListener('keydown', e => {
+    const k = e.code;
+    if (['Space', 'ArrowUp', 'ArrowDown', 'KeyW', 'KeyS', 'Enter'].includes(k)) e.preventDefault();
+    if (e.repeat) return;
+    if (durum === 'oyun') { if (['Space', 'ArrowUp', 'ArrowDown', 'KeyW', 'KeyS'].includes(k)) gec(); }
+    else if ((k === 'Space' || k === 'Enter') && (durum === 'giris' || performance.now() - olumZamani > 700)) basla();
+  });
+
+  function bitir() {
+    durum = 'bitti'; olumZamani = performance.now();
+    const [x, y] = poz(th, rr);
+    patlat(x, y, ['#5ce1e6', '#ffffff', '#ff7a59', '#ffd166'], 70, 320);
+    sarsinti = 14; flas = 1; patlamaSesi();
+    let rekor = false;
+    if (skor > enIyi) { enIyi = skor; enIyiKaydet(enIyi); rekor = skor > 0; }
+    elEnIyi.textContent = enIyi;
+    $('sonSkor').textContent = skor; $('sYildiz').textContent = yildizSay; $('sKil').textContent = kilSay;
+    $('sSure').textContent = Math.floor(zaman); $('sEnIyi').textContent = enIyi;
+    $('rekorYeri').innerHTML = rekor ? '<span class="rekor">Yeni rekor!</span>' : '';
+    hudGuncelle();
+    setTimeout(() => { if (durum === 'bitti') ovBitis.classList.remove('gizli'); }, 850);
+  }
+
+  // ---------- güncelleme ----------
+  function guncelle(dt) {
+    // yıldız alanı her durumda yavaşça döner
+    for (const g of gok) g.a += dt * 0.02 * (0.3 + g.d);
+
+    for (const p of parcalar) { p.t += dt; p.x += p.vx * dt; p.y += p.vy * dt; p.vx *= 0.96; p.vy *= 0.96; }
+    parcalar = parcalar.filter(p => p.t < p.life);
+    for (const y of yazilar) y.t += dt;
+    yazilar = yazilar.filter(y => y.t < 0.9);
+    sarsinti *= Math.pow(0.02, dt); flas = Math.max(0, flas - dt * 3);
+
+    if (durum !== 'oyun') {
+      if (durum === 'giris') { th += dt * 1.2; rr += (R[halka] - rr) * Math.min(1, dt * 14); izEkle(); }
+      return;
+    }
+    zaman += dt;
+    // ilk dakikada hızlı, sonra yavaş ama durmadan artan hız (turlar sonsuza uzamasın)
+    w = Math.min(4.6, 1.7 + zaman * 0.028 - Math.max(0, zaman - 64) * 0.018);
+    th += w * dt;
+    rr += (R[halka] - rr) * Math.min(1, dt * 16);
+    izEkle();
+
+    // doğurma
+    mTimer -= dt; yTimer -= dt;
+    if (mTimer <= 0) { meteorDogur(); mTimer = Math.max(0.42, 1.05 - zaman * 0.009) * rnd(0.8, 1.2); }
+    if (yTimer <= 0) { yildizDogur(); yTimer = rnd(0.75, 1.15); }
+
+    const [px, py] = poz(th, rr);
+
+    for (const m of meteorlar) {
+      m.t += dt; m.rot += m.don * dt;
+      if (m.gecti) { m.ol -= dt * 2.5; continue; }
+      const d = m.a - th; // birikimli açı: önde > 0, geride < 0
+      const [mx, my] = poz(m.a, R[m.h]);
+      const sc = Math.min(1, m.t / 0.25);
+      if (Math.hypot(mx - px, my - py) < (PR + MR * 0.78) * sc) { bitir(); return; }
+      if (d < -0.12) {
+        m.gecti = true;
+        if (m.h === oncekiHalka && m.h !== halka && zaman - sonGecis < 0.32) {
+          kilSay++; skor += 1; yaz(mx, my - MR - 6, 'Kıl payı! +1', '#5ce1e6');
+          ton(980, 0.12, 'square', 0.04, 1300); hudGuncelle();
+        }
+      }
+    }
+    meteorlar = meteorlar.filter(m => m.ol > 0);
+
+    for (const y of yildizlar) {
+      y.t += dt;
+      if (y.gecti) { y.ol -= dt * 3; continue; }
+      const [yx, yy] = poz(y.a, R[y.h]);
+      if (Math.hypot(yx - px, yy - py) < PR + YR) {
+        y.gecti = true; y.ol = 0; y.alindi = true;
+        seri++; yildizSay++;
+        const c = carp(), puan = c * (y.altin ? 5 : 1);
+        skor += puan;
+        yaz(yx, yy - YR - 6, '+' + puan, y.altin ? '#ffb703' : '#ffd166', y.altin);
+        patlat(yx, yy, y.altin ? ['#ffb703', '#fff3b0', '#ff7a59'] : ['#ffd166', '#fff3b0'], y.altin ? 30 : 14, 160);
+        ton(660 * Math.pow(1.06, Math.min(seri, 16)), 0.14, 'sine', 0.11);
+        if (seri % 4 === 0 && c > 1 && c <= 5 && seri <= 16) { ton(880, 0.2, 'triangle', 0.08, 1320); yaz(CX, CY - R[1] - 30, 'x' + c + ' çarpan!', '#ffd166', true); }
+        hudGuncelle();
+      } else if (y.a - th < -0.15) {
+        y.gecti = true;
+        if (seri > 0) { if (carp() > 1) yaz(yx, yy - YR - 6, 'Seri bitti', '#ff4d6d'); seri = 0; ton(220, 0.15, 'sine', 0.06, 160); hudGuncelle(); }
+      }
+    }
+    yildizlar = yildizlar.filter(y => y.ol > 0);
+  }
+  function izEkle() {
+    iz.push(poz(th, rr));
+    if (iz.length > 18) iz.shift();
+  }
+
+  // ---------- çizim ----------
+  function yildizSekli(x, y, r, rot) {
+    ctx.beginPath();
+    for (let i = 0; i < 10; i++) {
+      const rad = i % 2 ? r * 0.45 : r, a = rot + i * Math.PI / 5 - Math.PI / 2;
+      ctx.lineTo(x + Math.cos(a) * rad, y + Math.sin(a) * rad);
+    }
+    ctx.closePath();
+  }
+
+  function ciz(now) {
+    const t = now / 1000;
+    ctx.save();
+    // arka plan
+    const bg = ctx.createRadialGradient(CX, CY, 0, CX, CY, Math.max(W, H) * 0.75);
+    bg.addColorStop(0, '#1a1f5c'); bg.addColorStop(1, '#0b0e2e');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    if (sarsinti > 0.3) ctx.translate(rnd(-sarsinti, sarsinti), rnd(-sarsinti, sarsinti));
+
+    const uzak = Math.hypot(W, H) * 0.6;
+    for (const g of gok) {
+      const r = 30 + g.d * uzak;
+      const x = CX + Math.cos(g.a) * r, y = CY + Math.sin(g.a) * r;
+      ctx.globalAlpha = 0.25 + 0.55 * (0.5 + 0.5 * Math.sin(t * 2 + g.f));
+      ctx.fillStyle = '#c9ceff';
+      ctx.fillRect(x, y, g.s, g.s);
+    }
+    ctx.globalAlpha = 1;
+
+    // yörüngeler
+    for (let i = 0; i < 2; i++) {
+      const aktif = i === halka && durum !== 'bitti';
+      ctx.beginPath(); ctx.arc(CX, CY, R[i], 0, TAU);
+      ctx.strokeStyle = aktif ? 'rgba(92,225,230,.45)' : 'rgba(170,176,255,.16)';
+      ctx.lineWidth = aktif ? 2.5 : 1.5;
+      ctx.setLineDash([4, 9]); ctx.lineDashOffset = -t * 20 * (i ? 1 : -1);
+      ctx.stroke();
+    }
+    ctx.setLineDash([]);
+
+    // gezegen
+    const PRad = R[0] * 0.55;
+    ctx.save();
+    ctx.translate(CX, CY);
+    const hal = ctx.createRadialGradient(0, 0, PRad * 0.8, 0, 0, PRad * 1.7);
+    hal.addColorStop(0, 'rgba(255,122,89,.28)'); hal.addColorStop(1, 'rgba(255,122,89,0)');
+    ctx.fillStyle = hal; ctx.beginPath(); ctx.arc(0, 0, PRad * 1.7, 0, TAU); ctx.fill();
+    // arka halka
+    ctx.save(); ctx.rotate(-0.35); ctx.scale(1, 0.28);
+    ctx.beginPath(); ctx.arc(0, 0, PRad * 1.55, Math.PI, TAU); ctx.strokeStyle = 'rgba(255,209,102,.55)'; ctx.lineWidth = PRad * 0.22; ctx.stroke();
+    ctx.restore();
+    const pg = ctx.createRadialGradient(-PRad * 0.35, -PRad * 0.4, PRad * 0.1, 0, 0, PRad);
+    pg.addColorStop(0, '#ffb38a'); pg.addColorStop(0.6, '#ff7a59'); pg.addColorStop(1, '#c2410c');
+    ctx.fillStyle = pg; ctx.beginPath(); ctx.arc(0, 0, PRad, 0, TAU); ctx.fill();
+    ctx.save(); ctx.beginPath(); ctx.arc(0, 0, PRad, 0, TAU); ctx.clip();
+    ctx.fillStyle = 'rgba(194,65,12,.45)';
+    ctx.fillRect(-PRad, -PRad * 0.25, PRad * 2, PRad * 0.16);
+    ctx.fillRect(-PRad, PRad * 0.2, PRad * 2, PRad * 0.1);
+    ctx.fillStyle = 'rgba(255,230,200,.25)';
+    ctx.beginPath(); ctx.arc(PRad * 0.3 + Math.sin(t * 0.3) * PRad * 0.2, -PRad * 0.5, PRad * 0.14, 0, TAU); ctx.fill();
+    ctx.restore();
+    // ön halka
+    ctx.save(); ctx.rotate(-0.35); ctx.scale(1, 0.28);
+    ctx.beginPath(); ctx.arc(0, 0, PRad * 1.55, 0, Math.PI); ctx.strokeStyle = 'rgba(255,209,102,.8)'; ctx.lineWidth = PRad * 0.22; ctx.stroke();
+    ctx.restore();
+    ctx.restore();
+
+    // yıldızlar
+    for (const y of yildizlar) {
+      const [x, yy] = poz(y.a, R[y.h]);
+      const sc = Math.min(1, y.t / 0.25) * (y.gecti ? Math.max(0, y.ol) : 1);
+      const nab = 1 + Math.sin(t * 6 + y.a * 3) * 0.08;
+      const r = YR * sc * nab * (y.altin ? 1.35 : 1);
+      if (r <= 0.2) continue;
+      ctx.save();
+      ctx.shadowColor = y.altin ? '#ffb703' : '#ffd166'; ctx.shadowBlur = 14;
+      ctx.fillStyle = y.altin ? (Math.sin(t * 14) > 0 ? '#ffb703' : '#fff3b0') : '#ffd166';
+      yildizSekli(x, yy, r, t * 0.8 + y.a);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // meteorlar
+    for (const m of meteorlar) {
+      const [x, y] = poz(m.a, R[m.h]);
+      const t0 = Math.max(0, m.t);
+      let sc = t0 < 0.25 ? Math.sin((t0 / 0.25) * Math.PI / 2) * 1.12 : 1;
+      if (t0 > 0.25 && t0 < 0.35) sc = 1.12 - (t0 - 0.25) * 1.2;
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, Math.min(1, m.ol));
+      ctx.translate(x, y); ctx.rotate(m.rot);
+      const r = MR * sc;
+      // sıcak hale
+      const gl = ctx.createRadialGradient(0, 0, r * 0.5, 0, 0, r * 1.7);
+      gl.addColorStop(0, 'rgba(255,77,109,.35)'); gl.addColorStop(1, 'rgba(255,77,109,0)');
+      ctx.fillStyle = gl; ctx.beginPath(); ctx.arc(0, 0, r * 1.7, 0, TAU); ctx.fill();
+      ctx.beginPath();
+      m.kose.forEach((k, i) => { const a = (i / m.kose.length) * TAU; ctx.lineTo(Math.cos(a) * r * k, Math.sin(a) * r * k); });
+      ctx.closePath();
+      ctx.fillStyle = '#4a3a6b'; ctx.fill();
+      ctx.lineWidth = 2; ctx.strokeStyle = '#ff4d6d'; ctx.stroke();
+      ctx.fillStyle = 'rgba(20,12,40,.55)';
+      ctx.beginPath(); ctx.arc(r * 0.25, -r * 0.2, r * 0.22, 0, TAU); ctx.fill();
+      ctx.beginPath(); ctx.arc(-r * 0.3, r * 0.25, r * 0.14, 0, TAU); ctx.fill();
+      ctx.restore();
+    }
+
+    // uydu + iz
+    if (durum !== 'bitti') {
+      for (let i = 0; i < iz.length; i++) {
+        const k = i / iz.length;
+        ctx.globalAlpha = k * 0.5;
+        ctx.fillStyle = '#5ce1e6';
+        ctx.beginPath(); ctx.arc(iz[i][0], iz[i][1], PR * (0.3 + k * 0.6), 0, TAU); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      const [px, py] = poz(th, rr);
+      ctx.save();
+      ctx.translate(px, py); ctx.rotate(th + Math.PI / 2);
+      ctx.shadowColor = '#5ce1e6'; ctx.shadowBlur = 18;
+      // paneller
+      ctx.fillStyle = '#2a9ea3';
+      ctx.fillRect(-PR * 2.1, -PR * 0.35, PR * 1.1, PR * 0.7);
+      ctx.fillRect(PR * 1.0, -PR * 0.35, PR * 1.1, PR * 0.7);
+      ctx.fillStyle = '#e9feff';
+      ctx.beginPath(); ctx.arc(0, 0, PR, 0, TAU); ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = '#5ce1e6';
+      ctx.beginPath(); ctx.arc(0, 0, PR * 0.5, 0, TAU); ctx.fill();
+      ctx.restore();
+    }
+
+    // parçacıklar
+    for (const p of parcalar) {
+      ctx.globalAlpha = 1 - p.t / p.life;
+      ctx.fillStyle = p.c;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, TAU); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // yazılar
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    for (const y of yazilar) {
+      const k = y.t / 0.9;
+      ctx.globalAlpha = 1 - k * k;
+      ctx.font = `800 ${y.b ? 22 : 15}px Rubik, system-ui, sans-serif`;
+      ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(11,14,46,.8)';
+      ctx.strokeText(y.s, y.x, y.y - k * 28);
+      ctx.fillStyle = y.c; ctx.fillText(y.s, y.x, y.y - k * 28);
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    if (flas > 0) { ctx.fillStyle = `rgba(255,255,255,${flas * 0.5})`; ctx.fillRect(0, 0, W, H); }
+  }
+
+  // ---------- döngü ----------
+  let son = performance.now();
+  function dongu(now) {
+    const dt = Math.min(0.05, (now - son) / 1000); son = now;
+    guncelle(dt);
+    ciz(now);
+    requestAnimationFrame(dongu);
+  }
+  requestAnimationFrame(dongu);
+
+  // test/hata ayıklama için küçük bir pencere (oyunu etkilemez)
+  window.__yorunge = { durum: () => durum, skor: () => skor, zaman: () => zaman, halka: () => halka,
+    meteorlar: () => meteorlar.map(m => ({ a: m.a - th, h: m.h, gecti: m.gecti })),
+    yildizlar: () => yildizlar.map(y => ({ a: y.a - th, h: y.h, gecti: y.gecti })) };
+})();
+</script>
+</body>
+</html>

@@ -9,5 +9,15 @@
     "renk": "#c8963e",
     "kapak": "/img/bozkir-1.jpg",
     "buyuk": true
+  },
+  {
+    "slug": "yorunge",
+    "ad": "Yörünge",
+    "tarih": "2026-10-14",
+    "aciklama": "Gezegenin çevresinde dönen uydunu tek dokunuşla iki yörünge arasında geçir; meteorlardan kaç, yıldızları art arda toplayıp çarpanı büyüt.",
+    "tur": "Refleks",
+    "oyuncu": "tek",
+    "renk": "#141a4a",
+    "kapak": "/yorunge/kapak.svg"
   }
 ]
