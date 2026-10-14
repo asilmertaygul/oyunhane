@@ -12,7 +12,7 @@ const server=http.createServer((req,res)=>{
   fs.stat(f,(e,st)=>{
     if(!e&&st.isDirectory()){if(!u.endsWith('/')){res.writeHead(301,{location:u+'/'});res.end();return;}f=path.join(f,'index.html');}
     fs.readFile(f,(err,data)=>{if(err){res.writeHead(404,{'content-type':'text/html; charset=utf-8'});res.end('<h1>Bulunamadı</h1><p><a href="/">Oyunhane ana sayfası</a></p>');return;}
-      const ext=path.extname(f).toLowerCase();res.writeHead(200,{'content-type':TYPES[ext]||'application/octet-stream','cache-control':ext==='.html'?'no-cache':'public, max-age=86400'});res.end(data);});
+      const ext=path.extname(f).toLowerCase();res.writeHead(200,{'content-type':TYPES[ext]||'application/octet-stream','cache-control':(ext==='.html'||ext==='.json')?'no-cache':'public, max-age=86400'});res.end(data);});
   });
 });
 const wss=new WebSocketServer({server,path:'/ws',maxPayload:MAX_MSG});

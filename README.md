@@ -1,5 +1,7 @@
 # Oyunhane
 
+Her gün yeni bir mini oyunun eklendiği tarayıcı oyun sitesi. Oyun ekleme kuralları: `CLAUDE.md`. Liste: `public/games.json`.
+
 Tarayıcıda oynanan oyunların toplandığı site. Oyunlar `public/` klasöründe durur. `server.js` hem sayfaları sunar hem de çok oyunculu oyunlar için oyuncular arasındaki mesajları iletir.
 
 ## Oyunlar
