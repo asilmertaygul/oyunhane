@@ -1,0 +1,10 @@
+{
+  "name": "oyunhane",
+  "version": "1.0.0",
+  "description": "Oyunhane — tarayıcıda oynanan oyunlar ve çok oyunculu oyun sunucusu",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "ws": "^8.18.0" },
+  "private": true
+}
