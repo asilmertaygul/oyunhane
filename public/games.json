@@ -19,5 +19,15 @@
     "oyuncu": "tek",
     "renk": "#141a4a",
     "kapak": "/yorunge/kapak.svg"
+  },
+  {
+    "slug": "su-yolu",
+    "ad": "Su Yolu",
+    "tarih": "2026-10-15",
+    "aciklama": "Kanal taşlarını döndürüp çeşmedeki suyu bütün çiçeklere ulaştır; süre bitmeden olabildiğince çok bahçe sula.",
+    "tur": "Bulmaca",
+    "oyuncu": "tek",
+    "renk": "#24452f",
+    "kapak": "/su-yolu/kapak.svg"
   }
 ]
