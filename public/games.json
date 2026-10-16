@@ -29,5 +29,15 @@
     "oyuncu": "tek",
     "renk": "#24452f",
     "kapak": "/su-yolu/kapak.svg"
+  },
+  {
+    "slug": "sarkac",
+    "ad": "Sarkaç",
+    "tarih": "2026-10-16",
+    "aciklama": "Basılı tutup fener halkalarına ip at, sallanıp doğru anda bırak; Boğaz'a düşmeden simitleri topla ve olabildiğince uzağa uç.",
+    "tur": "Fizik",
+    "oyuncu": "tek",
+    "renk": "#2a1f5c",
+    "kapak": "/sarkac/kapak.svg"
   }
 ]
