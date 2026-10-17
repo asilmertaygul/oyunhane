@@ -39,5 +39,15 @@
     "oyuncu": "tek",
     "renk": "#2a1f5c",
     "kapak": "/sarkac/kapak.svg"
+  },
+  {
+    "slug": "kervan",
+    "ad": "Kervan",
+    "tarih": "2026-10-17",
+    "aciklama": "Deve kervanını çölde yönet, yük topladıkça kervanı uzat; hana ne kadar uzun kervanla varırsan o kadar çok altın kazanırsın, ama kayalara ve kendine çarpma.",
+    "tur": "Arcade",
+    "oyuncu": "tek",
+    "renk": "#a8662f",
+    "kapak": "/kervan/kapak.svg"
   }
 ]

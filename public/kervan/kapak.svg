@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="gok" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a3420"/><stop offset="1" stop-color="#b8662f"/>
+    </linearGradient>
+    <pattern id="kare" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#f4d9a3"/><rect width="20" height="20" fill="#efcf95"/><rect x="20" y="20" width="20" height="20" fill="#efcf95"/>
+    </pattern>
+    <g id="deve">
+      <ellipse cx="3" cy="4" rx="21" ry="13" fill="#502d0f" opacity=".22"/>
+      <path d="M10 -6 L14 -15 M10 6 L14 15 M-11 -6 L-15 -15 M-11 6 L-15 15" stroke="#7a4a26" stroke-width="3.5" stroke-linecap="round"/>
+      <ellipse rx="18" ry="10.5" fill="#c68a4e"/>
+      <path d="M11 0 H21" stroke="#c68a4e" stroke-width="6"/>
+      <ellipse cx="23.5" rx="6" ry="4.3" fill="#d29a5e"/>
+      <circle cx="25" cy="-2.2" r="1.1" fill="#3b2416"/><circle cx="25" cy="2.2" r="1.1" fill="#3b2416"/>
+    </g>
+  </defs>
+  <rect width="400" height="300" fill="url(#gok)"/>
+  <rect x="14" y="14" width="372" height="272" rx="16" fill="#a8662f"/>
+  <rect x="20" y="20" width="360" height="260" rx="10" fill="url(#kare)"/>
+  <g stroke="rgba(190,130,60,.3)" stroke-width="2" fill="none" stroke-linecap="round">
+    <path d="M60 70 q10 -5 20 0"/><path d="M300 230 q12 -6 24 0"/><path d="M90 240 q10 -5 20 0"/><path d="M250 60 q10 -5 20 0"/>
+  </g>
+  <!-- kayalar -->
+  <g>
+    <path d="M318 110 l14 -6 13 5 4 13 -9 11 -16 1 -10 -11z" fill="#8a7360"/><ellipse cx="327" cy="111" rx="7" ry="4" fill="#a99079"/>
+    <path d="M78 196 l13 -6 13 5 4 12 -9 11 -15 1 -10 -11z" fill="#8a7360"/><ellipse cx="87" cy="196" rx="7" ry="4" fill="#a99079"/>
+  </g>
+  <!-- ip -->
+  <path d="M60 140 H100 H140 V180 H180 H220" stroke="#6b4224" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- develer (yük heybeli) -->
+  <g transform="translate(60 140)"><use href="#deve"/><rect x="-8" y="-15" width="12" height="6" rx="2" fill="#3f8f4f"/><rect x="-8" y="9" width="12" height="6" rx="2" fill="#3f8f4f"/><circle cx="-2" r="7" fill="#b5773e"/></g>
+  <g transform="translate(100 140)"><use href="#deve"/><rect x="-8" y="-15" width="12" height="6" rx="2" fill="#e07a2f"/><rect x="-8" y="9" width="12" height="6" rx="2" fill="#e07a2f"/><circle cx="-2" r="7" fill="#b5773e"/></g>
+  <g transform="translate(140 160) rotate(90)"><use href="#deve"/><rect x="-8" y="-15" width="12" height="6" rx="2" fill="#8e4fa8"/><rect x="-8" y="9" width="12" height="6" rx="2" fill="#8e4fa8"/><circle cx="-2" r="7" fill="#b5773e"/></g>
+  <g transform="translate(180 180)"><use href="#deve"/><rect x="-8" y="-15" width="12" height="6" rx="2" fill="#f6c453"/><rect x="-8" y="9" width="12" height="6" rx="2" fill="#f6c453"/><circle cx="-2" r="7" fill="#b5773e"/></g>
+  <!-- lider -->
+  <g transform="translate(220 180)"><use href="#deve"/><rect x="-10" y="-10" width="16" height="20" rx="3" fill="#c0392b"/><circle cx="-2" r="6.5" fill="#2a9d8f"/><circle cx="-1" r="4" fill="#fff4e0"/><circle cx="-1" r="1.6" fill="#c0392b"/></g>
+  <!-- yükler -->
+  <g transform="translate(270 170) rotate(-20)"><rect x="-13" y="-8" width="26" height="14" rx="6" fill="#8e4fa8"/><rect x="-6" y="-8" width="2.5" height="14" fill="#f6c453"/><rect x="3" y="-8" width="2.5" height="14" fill="#f6c453"/></g>
+  <g transform="translate(150 80)"><ellipse cy="3" rx="12" ry="10" fill="#a36a3a"/><ellipse cy="-2" rx="9" ry="4.5" fill="#e07a2f"/></g>
+  <g transform="translate(250 245)"><circle r="12" fill="#f6c453" opacity=".3"/><circle r="8" fill="#f6c453"/><circle r="5" fill="none" stroke="#b4831b" stroke-width="1.5"/></g>
+  <!-- han -->
+  <g transform="translate(320 200)">
+    <circle r="34" fill="none" stroke="#f6c453" stroke-width="3" opacity=".6"/>
+    <rect x="-22" y="-14" width="44" height="36" rx="3" fill="#c4573a"/>
+    <rect x="-22" y="-14" width="44" height="8" rx="2" fill="#e0794f"/>
+    <g fill="#c4573a"><rect x="-20" y="-20" width="6" height="6"/><rect x="-9" y="-20" width="6" height="6"/><rect x="2" y="-20" width="6" height="6"/><rect x="13" y="-20" width="6" height="6"/></g>
+    <path d="M-6 22 V5 a6 6 0 0 1 12 0 V22z" fill="#3b2416"/>
+    <path d="M16 -20 V-40" stroke="#3b2416" stroke-width="2"/><path d="M16 -40 Q24 -38 30 -36 L16 -31z" fill="#2a9d8f"/>
+  </g>
+</svg>
