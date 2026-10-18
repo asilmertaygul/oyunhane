@@ -49,5 +49,15 @@
     "oyuncu": "tek",
     "renk": "#a8662f",
     "kapak": "/kervan/kapak.svg"
+  },
+  {
+    "slug": "takimyildiz",
+    "ad": "Takımyıldız",
+    "tarih": "2026-10-18",
+    "aciklama": "Numaraları sönen yıldızlara sırayla dokun, gökyüzüne takımyıldız çiz; her seviyede bir yıldız daha.",
+    "tur": "Hafıza",
+    "oyuncu": "tek",
+    "renk": "#151a4a",
+    "kapak": "/takimyildiz/kapak.svg"
   }
 ]

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="gok" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#070922"/><stop offset=".6" stop-color="#151a4a"/><stop offset="1" stop-color="#2a1b52"/>
+    </linearGradient>
+    <radialGradient id="b1" cx=".25" cy=".3" r=".6"><stop offset="0" stop-color="#7f5aff" stop-opacity=".35"/><stop offset="1" stop-color="#7f5aff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="b2" cx=".8" cy=".7" r=".5"><stop offset="0" stop-color="#ff5aa0" stop-opacity=".25"/><stop offset="1" stop-color="#ff5aa0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hale"><stop offset="0" stop-color="#ffd56b" stop-opacity=".6"/><stop offset="1" stop-color="#ffd56b" stop-opacity="0"/></radialGradient>
+    <g id="y">
+      <circle r="26" fill="url(#hale)"/>
+      <path d="M0 -13 L3.2 -3.2 13 0 3.2 3.2 0 13 -3.2 3.2 -13 0 -3.2 -3.2Z" fill="#ffd56b"/>
+      <circle r="2.6" fill="#fff"/>
+    </g>
+    <g id="s">
+      <circle r="15" fill="#1e225a" fill-opacity=".7" stroke="#7fd3ff" stroke-width="2" stroke-opacity=".7"/>
+      <path d="M0 -6 L1.5 -1.5 6 0 1.5 1.5 0 6 -1.5 1.5 -6 0 -1.5 -1.5Z" fill="#c8e6ff"/>
+    </g>
+  </defs>
+  <rect width="400" height="300" fill="url(#gok)"/>
+  <rect width="400" height="300" fill="url(#b1)"/>
+  <rect width="400" height="300" fill="url(#b2)"/>
+  <g fill="#fff">
+    <circle cx="30" cy="30" r="1" opacity=".6"/><circle cx="90" cy="18" r=".8" opacity=".4"/><circle cx="160" cy="40" r="1.2" opacity=".5"/>
+    <circle cx="350" cy="28" r="1" opacity=".6"/><circle cx="380" cy="90" r=".8" opacity=".5"/><circle cx="20" cy="140" r="1" opacity=".4"/>
+    <circle cx="250" cy="20" r=".9" opacity=".5"/><circle cx="310" cy="150" r="1" opacity=".4"/><circle cx="60" cy="210" r=".8" opacity=".5"/>
+    <circle cx="210" cy="250" r="1" opacity=".3"/><circle cx="130" cy="120" r=".7" opacity=".5"/><circle cx="370" cy="200" r="1" opacity=".4"/>
+  </g>
+  <circle cx="200" cy="140" r="122" fill="none" stroke="#a0aaff" stroke-opacity=".1" stroke-width="1.5"/>
+  <path d="M300 40 L360 62" stroke="#fff" stroke-opacity=".6" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- çizilmiş takımyıldız (leylek gibi) -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M108 190 L150 120 L212 96 L262 132 L238 196" stroke="#ffd56b" stroke-opacity=".22" stroke-width="9"/>
+    <path d="M108 190 L150 120 L212 96 L262 132 L238 196" stroke="#ffe4a0" stroke-width="2.4"/>
+  </g>
+  <use href="#y" x="108" y="190"/>
+  <use href="#y" x="150" y="120"/>
+  <use href="#y" x="212" y="96"/>
+  <use href="#y" x="262" y="132"/>
+  <use href="#y" x="238" y="196"/>
+  <use href="#s" x="300" y="210"/>
+  <use href="#s" x="168" y="226"/>
+  <path d="M0 300 V282 Q60 268 120 278 T240 274 T400 280 V300Z" fill="#0a0b22"/>
+</svg>
