@@ -59,5 +59,15 @@
     "oyuncu": "tek",
     "renk": "#151a4a",
     "kapak": "/takimyildiz/kapak.svg"
+  },
+  {
+    "slug": "mehter",
+    "ad": "Mehter",
+    "tarih": "2026-10-19",
+    "aciklama": "Kös, davul ve zile inen notaları tam çizgide vur; tempo hızlandıkça seriyi koru, coşkuyu söndürmeden mehter marşını sonuna kadar çal.",
+    "tur": "Ritim",
+    "oyuncu": "tek",
+    "renk": "#4a1020",
+    "kapak": "/mehter/kapak.svg"
   }
 ]
