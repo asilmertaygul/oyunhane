@@ -69,5 +69,15 @@
     "oyuncu": "tek",
     "renk": "#4a1020",
     "kapak": "/mehter/kapak.svg"
+  },
+  {
+    "slug": "okmeydani",
+    "ad": "Okmeydanı",
+    "tarih": "2026-10-20",
+    "aciklama": "Yayı geri çek, rüzgârı hesapla ve gün batımında uzaklaşan hedefe nişan al; tam ortaya vurdukça ok kazan, seriyi koruyup çarpanı büyüt.",
+    "tur": "Nişan",
+    "oyuncu": "tek",
+    "renk": "#5a2552",
+    "kapak": "/okmeydani/kapak.svg"
   }
 ]
