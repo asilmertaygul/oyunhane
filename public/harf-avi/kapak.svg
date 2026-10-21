@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+<defs><radialGradient id="bg" cx=".5" cy=".3" r=".8"><stop offset="0" stop-color="#21625c"/><stop offset=".55" stop-color="#123b39"/><stop offset="1" stop-color="#0b2826"/></radialGradient>
+<linearGradient id="tas" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8ecd4"/><stop offset="1" stop-color="#ead8b6"/></linearGradient>
+<linearGradient id="tahta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3f28"/><stop offset="1" stop-color="#3e2a1a"/></linearGradient></defs>
+<rect width="400" height="300" fill="url(#bg)"/>
+<g fill="#4fd1a5" opacity=".18"><circle cx="40" cy="250" r="50"/><circle cx="370" cy="40" r="40"/></g>
+<rect x="85" y="30" width="240" height="196" rx="18" fill="#06201e" opacity=".45" transform="translate(4 10)"/>
+<rect x="85" y="30" width="240" height="196" rx="18" fill="url(#tahta)"/>
+<rect x="97" y="44" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="97" y="42" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="141" y="44" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="141" y="42" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="185" y="44" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="185" y="42" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="229" y="44" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="229" y="42" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="273" y="44" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="273" y="42" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="97" y="88" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="97" y="86" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="141" y="88" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="141" y="86" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="185" y="88" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="185" y="86" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="229" y="88" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="229" y="86" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="273" y="88" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="273" y="86" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="97" y="132" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="97" y="130" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="141" y="132" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="141" y="130" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="185" y="132" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="185" y="130" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="229" y="132" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="229" y="130" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="273" y="132" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="273" y="130" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="97" y="176" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="97" y="174" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="141" y="176" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="141" y="174" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="185" y="176" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="185" y="174" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="229" y="176" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="229" y="174" width="40" height="40" rx="9" fill="url(#tas)"/>
+<rect x="273" y="176" width="40" height="40" rx="9" fill="#b99a6c"/><rect x="273" y="174" width="40" height="40" rx="9" fill="url(#tas)"/>
+<line x1="117.0" y1="106.0" x2="249.0" y2="106.0" stroke="#ff7a59" stroke-width="34" stroke-linecap="round" opacity=".62" style="mix-blend-mode:multiply"/>
+<line x1="117.0" y1="150.0" x2="293.0" y2="150.0" stroke="#4fd1a5" stroke-width="34" stroke-linecap="round" opacity=".62" style="mix-blend-mode:multiply"/>
+<line x1="161.0" y1="62.0" x2="249.0" y2="62.0" stroke="#f5b93a" stroke-width="34" stroke-linecap="round" opacity=".62" style="mix-blend-mode:multiply"/>
+<line x1="117.0" y1="194.0" x2="205.0" y2="194.0" stroke="#5aa9e6" stroke-width="34" stroke-linecap="round" opacity=".62" style="mix-blend-mode:multiply"/>
+<text x="117.0" y="71.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">K</text>
+<text x="161.0" y="71.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">N</text>
+<text x="205.0" y="71.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">A</text>
+<text x="249.0" y="71.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">R</text>
+<text x="293.0" y="71.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">Z</text>
+<text x="117.0" y="115.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">E</text>
+<text x="161.0" y="115.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">L</text>
+<text x="205.0" y="115.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">M</text>
+<text x="249.0" y="115.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">A</text>
+<text x="293.0" y="115.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">Ş</text>
+<text x="117.0" y="159.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">İ</text>
+<text x="161.0" y="159.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">N</text>
+<text x="205.0" y="159.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">C</text>
+<text x="249.0" y="159.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">İ</text>
+<text x="293.0" y="159.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">R</text>
+<text x="117.0" y="203.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">D</text>
+<text x="161.0" y="203.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">U</text>
+<text x="205.0" y="203.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">T</text>
+<text x="249.0" y="203.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">A</text>
+<text x="293.0" y="203.0" text-anchor="middle" font-family="Arial Rounded MT Bold,Verdana,sans-serif" font-weight="800" font-size="24" fill="#2d2219">Y</text>
+<line x1="293.0" y1="62.0" x2="205.0" y2="150.0" stroke="#7fd6ff" stroke-width="30" stroke-linecap="round" opacity=".45"/>
+<g transform="translate(211.0 158.0) rotate(-25)"><rect x="-9" y="0" width="18" height="70" rx="9" fill="#f2c7a5"/><rect x="-9" y="0" width="18" height="16" rx="8" fill="#e8b08c"/><ellipse cx="0" cy="5" rx="6" ry="4" fill="#fbe3d2"/></g>
+<path d="M70 52L72.5 57.5L78 60L72.5 62.5L70 68L67.5 62.5L62 60L67.5 57.5Z" fill="#f5b93a"/>
+<path d="M330 62L332.5 67.5L338 70L332.5 72.5L330 78L327.5 72.5L322 70L327.5 67.5Z" fill="#ff7a59"/>
+<path d="M345 222L347.5 227.5L353 230L347.5 232.5L345 238L342.5 232.5L337 230L342.5 227.5Z" fill="#4fd1a5"/>
+<path d="M60 192L62.5 197.5L68 200L62.5 202.5L60 208L57.5 202.5L52 200L57.5 197.5Z" fill="#c47de0"/>
+<path d="M320 142L322.5 147.5L328 150L322.5 152.5L320 158L317.5 152.5L312 150L317.5 147.5Z" fill="#f5b93a"/>
+</svg>

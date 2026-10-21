@@ -79,5 +79,15 @@
     "oyuncu": "tek",
     "renk": "#5a2552",
     "kapak": "/okmeydani/kapak.svg"
+  },
+  {
+    "slug": "harf-avi",
+    "ad": "Harf Avı",
+    "tarih": "2026-10-21",
+    "aciklama": "Harf ızgarasında temaya ait gizli kelimeleri sürükleyerek bul; süre bitmeden bölümleri temizle.",
+    "tur": "Kelime",
+    "oyuncu": "tek",
+    "renk": "#123b39",
+    "kapak": "/harf-avi/kapak.svg"
   }
 ]
