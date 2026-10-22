@@ -89,5 +89,15 @@
     "oyuncu": "tek",
     "renk": "#123b39",
     "kapak": "/harf-avi/kapak.svg"
+  },
+  {
+    "slug": "cati-kedisi",
+    "ad": "Çatı Kedisi",
+    "tarih": "2026-10-22",
+    "aciklama": "Kendiliğinden zıplayan sokak kedisini sağa sola yönlendir; tentelerden ve çamaşır iplerinden sekerek İstanbul çatılarında yüksel, balıkları topla, martıların üstüne bas ve aşağı düşme.",
+    "tur": "Platform",
+    "oyuncu": "tek",
+    "renk": "#2a1d5c",
+    "kapak": "/cati-kedisi/kapak.svg"
   }
 ]
