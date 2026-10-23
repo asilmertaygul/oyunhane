@@ -99,5 +99,15 @@
     "oyuncu": "tek",
     "renk": "#2a1d5c",
     "kapak": "/cati-kedisi/kapak.svg"
+  },
+  {
+    "slug": "peri-bacalari",
+    "ad": "Peri Bacaları",
+    "tarih": "2026-10-23",
+    "aciklama": "Kapadokya'da üç tepeli kart oyunu: ortadaki karttan bir büyük ya da bir küçük olanı aç, seriyi uzatıp peri bacalarının zirvelerini yık, balonları havalandır.",
+    "tur": "Kart",
+    "oyuncu": "tek",
+    "renk": "#4f2a5e",
+    "kapak": "/peri-bacalari/kapak.svg"
   }
 ]

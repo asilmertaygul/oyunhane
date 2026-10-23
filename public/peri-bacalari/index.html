@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Peri Bacaları · Oyunhane</title>
+<meta name="theme-color" content="#2a1b48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+  :root{
+    --bg:#2a1b48; --ink:#fff6e8; --dim:#e2c9d6; --altin:#ffc861; --firuze:#3bc4b8; --kiremit:#c4573a; --gul:#e8505b;
+    --card:rgba(38,24,64,.93);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+    font-family:"Baloo 2",system-ui,-apple-system,"Segoe UI",sans-serif;
+    -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
+  canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+  .top{position:fixed;left:0;right:0;top:0;display:flex;align-items:flex-start;justify-content:space-between;
+    padding:calc(10px + env(safe-area-inset-top)) 12px 0;pointer-events:none;z-index:3}
+  .top > *{pointer-events:auto}
+  .home{color:var(--ink);text-decoration:none;font-weight:700;font-size:15px;padding:6px 12px;border-radius:999px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);white-space:nowrap}
+  .home:hover{background:rgba(255,255,255,.18)}
+  .hud{position:absolute;left:50%;transform:translateX(-50%);top:calc(2px + env(safe-area-inset-top));text-align:center;pointer-events:none;white-space:nowrap}
+  .hud .sc{font-size:32px;font-weight:800;line-height:1.05;color:var(--altin);text-shadow:0 2px 12px rgba(255,200,97,.45);transition:transform .15s}
+  .hud .sc.vur{transform:scale(1.22)}
+  .hud .sv{font-size:13px;font-weight:700;color:var(--dim);letter-spacing:.3px}
+  .hud .sv b{color:var(--ink)}
+  .sag{display:flex;gap:8px;align-items:center}
+  .best{font-size:12px;color:var(--dim);font-weight:700;text-align:right;line-height:1.1}
+  .best b{display:block;color:var(--ink);font-size:16px}
+  .snd{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.1);
+    color:var(--ink);font-size:16px;cursor:pointer;display:grid;place-items:center;font-family:inherit}
+  .ov{position:fixed;inset:0;display:grid;place-items:center;padding:20px;z-index:5;background:rgba(26,14,40,.45);
+    backdrop-filter:blur(3px);transition:opacity .25s}
+  .ov.gizli{opacity:0;pointer-events:none}
+  .kutu{width:min(380px,100%);background:var(--card);border:1px solid rgba(255,255,255,.14);border-radius:22px;
+    padding:24px 22px 22px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .kutu h1{font-size:34px;line-height:1.05;font-weight:800;color:var(--altin);margin-bottom:4px}
+  .kutu h2{font-size:26px;line-height:1.1;font-weight:800;color:var(--altin);margin-bottom:6px}
+  .alt{color:var(--dim);font-size:14px;font-weight:600;margin-bottom:14px}
+  .nasil{font-size:15px;line-height:1.45;color:var(--ink);margin-bottom:10px}
+  .tus{font-size:12.5px;color:var(--dim);margin-bottom:16px}
+  .tus kbd{font-family:inherit;background:rgba(255,255,255,.12);border-radius:5px;padding:0 5px;font-weight:700;color:var(--ink)}
+  .btn{font-family:inherit;font-size:19px;font-weight:800;color:#2a1b48;background:linear-gradient(180deg,#ffd57e,#ffb347);
+    border:none;border-radius:999px;padding:11px 30px;cursor:pointer;box-shadow:0 6px 0 #c47a2a,0 10px 24px rgba(255,170,70,.35);
+    transition:transform .08s}
+  .btn:active{transform:translateY(3px);box-shadow:0 3px 0 #c47a2a}
+  .btn:focus-visible{outline:3px solid var(--firuze);outline-offset:3px}
+  .buyuk{font-size:52px;font-weight:800;color:var(--ink);line-height:1;margin:6px 0 2px}
+  .satirlar{margin:12px auto 16px;max-width:280px;font-size:14.5px;text-align:left}
+  .satirlar div{display:flex;justify-content:space-between;padding:4px 2px;border-bottom:1px dashed rgba(255,255,255,.14)}
+  .satirlar div b{color:var(--altin)}
+  .satirlar div.tp{border-bottom:none;font-size:16px;font-weight:800}
+  @media (hover:none){ .tus{display:none} }
+  .rozet{display:inline-block;background:var(--gul);color:#fff;font-weight:800;font-size:14px;border-radius:999px;padding:2px 12px;margin-bottom:6px;
+    animation:zipla .7s ease-in-out infinite alternate}
+  .rozet.gizli{display:none}
+  .not{font-size:13.5px;color:var(--firuze);font-weight:700;margin-bottom:14px}
+  @keyframes zipla{from{transform:translateY(0)}to{transform:translateY(-4px)}}
+  @media (max-width:420px){
+    .hud .sc{font-size:26px}
+    .home{font-size:13px;padding:5px 10px}
+    .best{font-size:11px}.best b{font-size:14px}
+    .snd{width:32px;height:32px;font-size:14px}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div class="top">
+  <a class="home" href="/">← Oyunhane</a>
+  <div class="hud"><div class="sc" id="sc">0</div><div class="sv" id="sv">El <b>1</b>/3</div></div>
+  <div class="sag">
+    <div class="best">En iyi<b id="best">0</b></div>
+    <button class="snd" id="snd" aria-label="Sesi aç/kapat">🔊</button>
+  </div>
+</div>
+
+<div class="ov" id="ovBasla">
+  <div class="kutu">
+    <h1>Peri Bacaları</h1>
+    <div class="alt">Kapadokya'da üç tepeli kart oyunu</div>
+    <p class="nasil">Ortadaki karttan <b>bir büyük ya da bir küçük</b> olan açık karta dokun, seri yaptıkça puan katlanır. Hamle kalmayınca desteden kart çek, ama seri sıfırlanır.</p>
+    <p class="tus">Klavye: <kbd>←</kbd><kbd>→</kbd> seç · <kbd>Enter</kbd> oyna · <kbd>Boşluk</kbd> kart çek</p>
+    <button class="btn" id="bBasla">Başla</button>
+  </div>
+</div>
+
+<div class="ov gizli" id="ovAra">
+  <div class="kutu">
+    <h2 id="araBaslik">1. el bitti</h2>
+    <div class="satirlar" id="araSatir"></div>
+    <div class="not" id="araNot"></div>
+    <button class="btn" id="bDevam">Sonraki el</button>
+  </div>
+</div>
+
+<div class="ov gizli" id="ovSon">
+  <div class="kutu">
+    <div class="rozet gizli" id="rekor">Yeni rekor!</div>
+    <h2>Oyun bitti</h2>
+    <div class="buyuk" id="sonSkor">0</div>
+    <div class="alt" id="sonBest">En iyi: 0</div>
+    <div class="satirlar" id="sonSatir"></div>
+    <button class="btn" id="bTekrar">Tekrar oyna</button>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+// ---------- yardımcılar ----------
+const $ = id => document.getElementById(id);
+const cv = $('c'), ctx = cv.getContext('2d');
+const FONT = '"Baloo 2", system-ui, sans-serif';
+const RANKS = ['A','2','3','4','5','6','7','8','9','10','V','K','P'];
+const RED = '#cf3a52', BLACK = '#2a2140', FACE = '#fff8ec';
+const BALON_RENK = ['#e8505b','#ffc861','#3bc4b8','#f28c38','#8b5fbf','#ff8fa3'];
+const ELLER = [
+  { t: 120, wrap: true,  mult: 1 },
+  { t: 100, wrap: true,  mult: 2 },
+  { t: 80,  wrap: false, mult: 3 },
+];
+const BEST_KEY = 'oyunhane.peri-bacalari.best', SES_KEY = 'oyunhane.peri-bacalari.ses';
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+function rng(seed){ return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+
+// ---------- ses ----------
+let AC = null, muted = lsGet(SES_KEY) === '0';
+function ac(){
+  if (muted) return null;
+  if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return null; } }
+  if (AC.state === 'suspended') AC.resume();
+  return AC;
+}
+function tone(f, dur, type='triangle', vol=.18, delay=0, f2=null){
+  const a = ac(); if (!a) return;
+  const t = a.currentTime + delay, o = a.createOscillator(), g = a.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t);
+  if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t + dur + .02);
+}
+function noise(dur, vol=.12, freq=2500){
+  const a = ac(); if (!a) return;
+  const n = Math.floor(a.sampleRate * dur), b = a.createBuffer(1, n, a.sampleRate), d = b.getChannelData(0);
+  for (let i = 0; i < n; i++) d[i] = (Math.random()*2-1) * (1 - i/n);
+  const s = a.createBufferSource(), fl = a.createBiquadFilter(), g = a.createGain();
+  s.buffer = b; fl.type = 'bandpass'; fl.frequency.value = freq; fl.Q.value = .8; g.gain.value = vol;
+  s.connect(fl).connect(g).connect(a.destination); s.start();
+}
+const PENTA = [0,2,4,7,9,12,14,16,19,21,24,26,28,31];
+const sfx = {
+  kart(combo){ const st = PENTA[Math.min(combo-1, PENTA.length-1)]; noise(.06,.09,3200); tone(392*Math.pow(2, st/12), .22, 'triangle', .16); },
+  cek(){ noise(.12, .13, 1400); tone(220, .1, 'sine', .06, 0, 160); },
+  hata(){ tone(140, .14, 'square', .06); },
+  tepe(){ [523,659,784,1047].forEach((f,i) => tone(f, .25, 'triangle', .14, i*.07)); },
+  tik(){ tone(880, .05, 'square', .035); },
+  bitti(ok){ (ok ? [523,659,784,1047,1319] : [392,330,262]).forEach((f,i) => tone(f, .4, 'triangle', .14, i*.1)); },
+};
+
+// ---------- durum ----------
+let W = 0, H = 0, DPR = 1, L = {};
+let cards = [], tableau = [], stock = [], waste = [];
+let state = 'menu', hand = 1, score = 0, handPts = 0, combo = 0, maxCombo = 0, timeLeft = 0, zc = 100;
+let handLog = [], handMax = 0, peaksDone = 0, lastAct = 0, now = 0, sel = -1, kbMode = false, tickSec = -1;
+let particles = [], popups = [], balloons = [], ambient = [], shakeT = 0;
+let best = parseInt(lsGet(BEST_KEY) || '0', 10) || 0;
+$('best').textContent = best;
+$('snd').textContent = muted ? '🔇' : '🔊';
+
+// tepeler: satır 0 (zirve) ... satır 3 (taban), gx: kart genişliği biriminde yatay konum
+const SLOTS = [];
+for (let p = 0; p < 3; p++) SLOTS.push({ row: 0, gx: 1.5 + 3*p, peak: p });
+for (let p = 0; p < 3; p++) for (let j = 0; j < 2; j++) SLOTS.push({ row: 1, gx: 1 + 3*p + j });
+for (let i = 0; i < 9; i++) SLOTS.push({ row: 2, gx: i + .5 });
+for (let i = 0; i < 10; i++) SLOTS.push({ row: 3, gx: i });
+
+function cfg(){ return ELLER[hand-1]; }
+function fits(a, b){ const d = Math.abs(a - b); return d === 1 || (cfg().wrap && d === 12); }
+function isOpen(c){ return c.loc === 't' && c.cov.every(o => o.loc !== 't'); }
+function topW(){ return waste[waste.length-1]; }
+function openCards(){ return tableau.filter(isOpen).sort((a,b) => a.gx - b.gx || a.row - b.row); }
+function validMoves(){ const t = topW(); return t ? openCards().filter(c => fits(c.r, t.r)) : []; }
+
+// ---------- yerleşim ----------
+function layout(){
+  W = innerWidth; H = innerHeight; DPR = Math.min(2, window.devicePixelRatio || 1);
+  cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+  const top = W < 420 ? 64 : 72, bot = 16, avail = H - top - bot;
+  const cw = Math.min((W - 16) / 10.5, avail / (1.4*4.6), 92);
+  const ch = cw*1.4, sp = cw*1.05, rs = ch*(H > W*1.3 ? .6 : .5);
+  const peaksW = 9*sp + cw, peaksH = 3*rs + ch;
+  const ps = clamp((avail - peaksH - 70) / (ch*2.3), 1, 2);
+  const pileH = ch*ps, g = Math.max(10, ch*.25), infoH = 40;
+  const total = peaksH + g + infoH + g + pileH;
+  const y0 = top + Math.max(0, (avail - total)/2) * .55;
+  L = { cw, ch, sp, rs, ps, px: (W - peaksW)/2, py: y0, peaksW, infoY: y0 + peaksH + g, pileY: y0 + peaksH + g + infoH + g + pileH/2 };
+  const pw = cw*ps;
+  L.sx = W/2 - pw*.75 - 8; L.wx = W/2 + pw*.75 + 8;
+  buildBg();
+  initAmbient();
+}
+function target(c){
+  if (c.loc === 't') return { x: L.px + c.gx*L.sp + L.cw/2, y: L.py + c.row*L.rs + L.ch/2, s: 1 };
+  if (c.loc === 's') { const i = stock.indexOf(c); return { x: L.sx - Math.min(i, 12)*.6, y: L.pileY - Math.min(i, 12)*.9, s: L.ps }; }
+  return { x: L.wx, y: L.pileY, s: L.ps };
+}
+
+// ---------- arka plan ----------
+let bg = document.createElement('canvas'), bgx = bg.getContext('2d');
+function chimney(g, x, base, w, h, col, cap){
+  g.fillStyle = col; g.beginPath();
+  g.moveTo(x - w/2, base);
+  g.quadraticCurveTo(x - w*.46, base - h*.55, x - w*.17, base - h*.9);
+  g.lineTo(x + w*.17, base - h*.9);
+  g.quadraticCurveTo(x + w*.46, base - h*.55, x + w/2, base);
+  g.closePath(); g.fill();
+  g.fillStyle = cap; g.beginPath();
+  g.moveTo(x - w*.34, base - h*.88);
+  g.quadraticCurveTo(x, base - h*1.05, x + w*.34, base - h*.88);
+  g.quadraticCurveTo(x, base - h*.84, x - w*.34, base - h*.88);
+  g.fill();
+}
+function buildBg(){
+  bg.width = cv.width; bg.height = cv.height;
+  const g = bgx; g.setTransform(DPR,0,0,DPR,0,0);
+  const sky = g.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0, '#22163f'); sky.addColorStop(.42, '#4f2a5e'); sky.addColorStop(.7, '#b85a78'); sky.addColorStop(.9, '#f0a06a');
+  g.fillStyle = sky; g.fillRect(0,0,W,H);
+  const R = rng(7);
+  g.fillStyle = '#fff3dc';
+  for (let i = 0; i < 70; i++) { g.globalAlpha = .25 + R()*.6; g.beginPath(); g.arc(R()*W, R()*H*.45, R()*1.3+.3, 0, 7); g.fill(); }
+  g.globalAlpha = 1;
+  const sx = W*.74, sy = H*.7, sr = Math.min(W,H)*.11;
+  const glow = g.createRadialGradient(sx, sy, sr*.4, sx, sy, sr*3.2);
+  glow.addColorStop(0, 'rgba(255,214,140,.55)'); glow.addColorStop(1, 'rgba(255,214,140,0)');
+  g.fillStyle = glow; g.fillRect(0,0,W,H);
+  g.fillStyle = '#ffd88f'; g.beginPath(); g.arc(sx, sy, sr, 0, 7); g.fill();
+  const u = Math.max(W, H*1.1) / 1000;
+  const layers = [
+    { base: H*.8,  col: '#8f4a63', cap: '#6d3550', n: 13, h: [70,150], w: [30,55] },
+    { base: H*.88, col: '#6a3352', cap: '#4a2240', n: 10, h: [110,210], w: [45,80] },
+    { base: H*.97, col: '#3c1f3e', cap: '#28132c', n: 7,  h: [160,300], w: [60,110] },
+  ];
+  layers.forEach((ly, k) => {
+    const r = rng(31 + k*17);
+    for (let i = 0; i < ly.n; i++) {
+      const x = (i + r()*.8) / ly.n * (W + 80) - 40;
+      chimney(g, x, ly.base, (ly.w[0] + r()*(ly.w[1]-ly.w[0]))*u, (ly.h[0] + r()*(ly.h[1]-ly.h[0]))*u, ly.col, ly.cap);
+    }
+    g.fillStyle = ly.col; g.beginPath(); g.moveTo(0, H);
+    for (let x = 0; x <= W + 20; x += 20) g.lineTo(x, ly.base - Math.sin(x*.01 + k)*6*u - 4);
+    g.lineTo(W, H); g.closePath(); g.fill();
+  });
+  const vig = g.createRadialGradient(W/2, H*.45, Math.min(W,H)*.3, W/2, H*.45, Math.max(W,H)*.8);
+  vig.addColorStop(0, 'rgba(0,0,0,0)'); vig.addColorStop(1, 'rgba(10,4,20,.45)');
+  g.fillStyle = vig; g.fillRect(0,0,W,H);
+}
+function initAmbient(){
+  const R = rng(99), s = Math.max(.6, Math.min(W,H)/700);
+  ambient = [];
+  for (let i = 0; i < 5; i++) ambient.push({ x: R()*W, y: H*(.15 + R()*.55), sz: (10 + R()*14)*s, vx: (R()*.5+.2)*(R()<.5?-1:1)*8, ph: R()*7, c: [BALON_RENK[i % 6], BALON_RENK[(i+2) % 6]], a: .55 });
+}
+function drawBalloon(b, t){
+  const x = b.x, y = b.y + Math.sin(t*.8 + b.ph)*3, r = b.sz;
+  ctx.save(); ctx.globalAlpha = b.a;
+  ctx.beginPath(); ctx.moveTo(x, y + r*1.35);
+  ctx.bezierCurveTo(x - r*.5, y + r*1.1, x - r*1.05, y + r*.45, x - r, y - r*.1);
+  ctx.arc(x, y - r*.1, r, Math.PI, 0);
+  ctx.bezierCurveTo(x + r*1.05, y + r*.45, x + r*.5, y + r*1.1, x, y + r*1.35);
+  ctx.closePath(); ctx.fillStyle = b.c[0]; ctx.fill();
+  ctx.clip();
+  ctx.fillStyle = b.c[1];
+  for (let k = -2; k <= 2; k += 2) { ctx.beginPath(); ctx.ellipse(x + k*r*.42, y, r*.17, r*1.5, 0, 0, 7); ctx.fill(); }
+  ctx.restore(); ctx.save(); ctx.globalAlpha = b.a;
+  ctx.strokeStyle = 'rgba(40,20,30,.7)'; ctx.lineWidth = Math.max(.6, r*.05);
+  ctx.beginPath(); ctx.moveTo(x - r*.32, y + r*1.25); ctx.lineTo(x - r*.2, y + r*1.75); ctx.moveTo(x + r*.32, y + r*1.25); ctx.lineTo(x + r*.2, y + r*1.75); ctx.stroke();
+  ctx.fillStyle = '#7a4a2a'; ctx.fillRect(x - r*.24, y + r*1.72, r*.48, r*.32);
+  ctx.restore();
+}
+
+// ---------- kart çizimi ----------
+function rr(g, x, y, w, h, r){ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); }
+function suit(g, s, x, y, r){
+  g.beginPath();
+  if (s === 1) { // kupa
+    g.moveTo(x, y + r*.95);
+    g.bezierCurveTo(x - r*1.7, y - r*.15, x - r*.65, y - r*1.35, x, y - r*.42);
+    g.bezierCurveTo(x + r*.65, y - r*1.35, x + r*1.7, y - r*.15, x, y + r*.95);
+  } else if (s === 2) { // karo
+    g.moveTo(x, y - r); g.lineTo(x + r*.74, y); g.lineTo(x, y + r); g.lineTo(x - r*.74, y);
+  } else if (s === 0) { // maça
+    g.moveTo(x, y - r);
+    g.bezierCurveTo(x + r*1.6, y - r*.05, x + r*.75, y + r*1.05, x, y + r*.38);
+    g.bezierCurveTo(x - r*.75, y + r*1.05, x - r*1.6, y - r*.05, x, y - r);
+    g.moveTo(x, y + r*.2); g.lineTo(x + r*.42, y + r*1.02); g.lineTo(x - r*.42, y + r*1.02);
+  } else { // sinek
+    g.arc(x, y - r*.45, r*.43, 0, 7); g.moveTo(x - r*.05, y + r*.2);
+    g.arc(x - r*.48, y + r*.18, r*.43, 0, 7); g.moveTo(x + r*.9, y + r*.18);
+    g.arc(x + r*.48, y + r*.18, r*.43, 0, 7);
+    g.moveTo(x, y); g.lineTo(x + r*.38, y + r*1.02); g.lineTo(x - r*.38, y + r*1.02);
+  }
+  g.closePath(); g.fill();
+}
+function drawCard(c, t){
+  const w = L.cw*c.ds, h = L.ch*c.ds, rad = w*.12;
+  let sx = Math.abs(1 - 2*c.f), face = c.f >= .5;
+  sx = Math.max(sx, .02);
+  const shx = c.shake > 0 ? Math.sin(t*55)*c.shake*w*.08 : 0;
+  ctx.save(); ctx.translate(c.dx + shx, c.dy);
+  ctx.fillStyle = 'rgba(20,6,26,.32)'; rr(ctx, -w/2*sx + w*.03, -h/2 + h*.04, w*sx, h, rad); ctx.fill();
+  ctx.scale(sx, 1);
+  if (c.glow > 0) {
+    ctx.fillStyle = `rgba(59,196,184,${.55*c.glow})`; rr(ctx, -w/2 - 5, -h/2 - 5, w + 10, h + 10, rad + 5); ctx.fill();
+  }
+  if (face) {
+    ctx.fillStyle = FACE; rr(ctx, -w/2, -h/2, w, h, rad); ctx.fill();
+    ctx.strokeStyle = '#e2cfb2'; ctx.lineWidth = Math.max(1, w*.025); ctx.stroke();
+    const col = (c.s === 1 || c.s === 2) ? RED : BLACK;
+    ctx.fillStyle = col;
+    const lab = RANKS[c.r-1], fs = w*(lab.length > 1 ? .4 : .46);
+    ctx.font = `800 ${fs}px ${FONT}`; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText(lab, -w/2 + w*.09, -h/2 + h*.05);
+    suit(ctx, c.s, -w/2 + w*.25, -h/2 + h*.47, w*.11);
+    suit(ctx, c.s, w*.12, h*.16, w*.27);
+    if (c.r > 10) { // taç
+      const cx = w*.24, cy = -h*.29, cs = w*.15; ctx.fillStyle = '#e0a63a';
+      ctx.beginPath(); ctx.moveTo(cx - cs, cy + cs*.6); ctx.lineTo(cx - cs, cy - cs*.4); ctx.lineTo(cx - cs*.5, cy + cs*.1); ctx.lineTo(cx, cy - cs*.7); ctx.lineTo(cx + cs*.5, cy + cs*.1); ctx.lineTo(cx + cs, cy - cs*.4); ctx.lineTo(cx + cs, cy + cs*.6); ctx.closePath(); ctx.fill();
+    }
+  } else {
+    ctx.fillStyle = '#b5472f'; rr(ctx, -w/2, -h/2, w, h, rad); ctx.fill();
+    ctx.strokeStyle = '#ffe8c8'; ctx.lineWidth = Math.max(1, w*.035);
+    rr(ctx, -w/2 + w*.1, -h/2 + w*.1, w*.8, h - w*.2, rad*.6); ctx.stroke();
+    ctx.fillStyle = '#ffe8c8';
+    ctx.beginPath(); ctx.moveTo(0, -h*.22); ctx.lineTo(w*.22, 0); ctx.lineTo(0, h*.22); ctx.lineTo(-w*.22, 0); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#d9773d';
+    ctx.beginPath(); ctx.moveTo(0, -h*.11); ctx.lineTo(w*.11, 0); ctx.lineTo(0, h*.11); ctx.lineTo(-w*.11, 0); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = '#ffe8c8';
+    for (const yy of [-h*.36, h*.36]) { ctx.beginPath(); ctx.moveTo(-w*.12, yy); ctx.lineTo(0, yy + (yy < 0 ? h*.06 : -h*.06)); ctx.lineTo(w*.12, yy); ctx.closePath(); ctx.fill(); }
+  }
+  if (c.sel) { ctx.strokeStyle = '#ffc861'; ctx.lineWidth = 3; rr(ctx, -w/2 - 3, -h/2 - 3, w + 6, h + 6, rad + 3); ctx.stroke(); }
+  ctx.restore();
+}
+
+// ---------- oyun akışı ----------
+function shuffle(a){ for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function deal(){
+  const deck = [];
+  for (let s = 0; s < 4; s++) for (let r = 1; r <= 13; r++) deck.push({ r, s });
+  shuffle(deck);
+  cards = deck.map(d => ({ ...d, loc: 's', row: -1, gx: 0, cov: [], dx: L.sx, dy: L.pileY, ds: L.ps, f: 0, z: 0, shake: 0, wait: 0, glow: 0, sel: false }));
+  tableau = cards.slice(0, 28); stock = cards.slice(28); waste = [];
+  tableau.forEach((c, i) => { const sl = SLOTS[i]; c.loc = 't'; c.row = sl.row; c.gx = sl.gx; c.peak = sl.peak; c.z = sl.row*20 + i; });
+  tableau.forEach(c => { c.cov = tableau.filter(o => o.row === c.row + 1 && Math.abs(o.gx - c.gx) === .5); });
+  // dağıtım animasyonu: tabandan zirveye doğru değil, zirveden tabana
+  tableau.forEach((c, i) => { c.wait = .1 + i*.028; });
+  stock.forEach((c, i) => { c.z = -100 + i; });
+  const first = stock.pop(); first.loc = 'w'; first.z = ++zc; first.wait = .1 + 28*.028 + .1; waste.push(first);
+  combo = 0; handMax = 0; handPts = 0; peaksDone = 0; timeLeft = cfg().t; sel = -1; tickSec = -1;
+  lastAct = now;
+}
+function faceTarget(c){ return c.loc === 'w' || (c.loc === 't' && isOpen(c)); }
+function addPts(p, x, y, label, col){
+  score += p; handPts += p;
+  $('sc').textContent = score;
+  const el = $('sc'); el.classList.remove('vur'); void el.offsetWidth; el.classList.add('vur');
+  popups.push({ x, y, text: label || ('+' + p), life: 1, col: col || '#ffc861', sz: Math.max(16, L.cw*.38) });
+}
+function burst(x, y, n, cols, spd=1){
+  for (let i = 0; i < n; i++) {
+    const a = Math.random()*Math.PI*2, v = (60 + Math.random()*180)*spd;
+    particles.push({ x, y, vx: Math.cos(a)*v, vy: Math.sin(a)*v - 60, life: 1, dec: .9 + Math.random()*.8, r: 1.5 + Math.random()*2.5, c: cols[i % cols.length] });
+  }
+}
+function play(c){
+  if (state !== 'play' || !isOpen(c)) return;
+  ac();
+  const t = topW();
+  if (!fits(c.r, t.r)) { c.shake = 1; sfx.hata(); lastAct = now; return; }
+  const x = c.dx, y = c.dy;
+  c.loc = 'w'; c.z = ++zc; c.wait = 0; waste.push(c);
+  combo++; maxCombo = Math.max(maxCombo, combo); handMax = Math.max(handMax, combo);
+  const m = cfg().mult;
+  addPts(10*combo*m, x, y - L.ch*.3, null, combo >= 5 ? '#3bc4b8' : '#ffc861');
+  if (combo >= 3) popups.push({ x, y: y + L.ch*.2, text: 'Seri ' + combo, life: 1, col: '#fff6e8', sz: Math.max(13, L.cw*.28) });
+  burst(x, y, 10 + Math.min(combo, 10)*2, ['#ffc861','#fff1c9','#3bc4b8']);
+  sfx.kart(combo);
+  if (c.row === 0) {
+    peaksDone++;
+    addPts(150*m, x, y - L.ch*.75, 'Zirve! +' + 150*m, '#ff8fa3');
+    balloons.push({ x, y, sz: L.cw*.42, vx: (Math.random()-.5)*20, vy: -40, c: [BALON_RENK[c.peak*2 % 6], BALON_RENK[(c.peak*2+1) % 6]], a: 1, ph: Math.random()*7 });
+    burst(x, y, 30, ['#ff8fa3','#ffc861','#fff'], 1.4);
+    setTimeout(() => sfx.tepe(), 90);
+  }
+  lastAct = now; checkEnd();
+}
+function draw(){
+  if (state !== 'play' || !stock.length) return;
+  ac();
+  const c = stock.pop(); c.loc = 'w'; c.z = ++zc; c.wait = 0; waste.push(c);
+  if (combo >= 3) popups.push({ x: L.wx, y: L.pileY - L.ch*L.ps*.7, text: 'Seri bitti', life: 1, col: '#e2c9d6', sz: Math.max(13, L.cw*.28) });
+  combo = 0; sfx.cek(); lastAct = now; checkEnd();
+}
+function checkEnd(){
+  if (state !== 'play') return;
+  if (!tableau.some(c => c.loc === 't')) return endHand('temiz');
+  if (!stock.length && !validMoves().length) return endHand('hamle');
+}
+function endHand(why){
+  state = 'ara';
+  const m = cfg().mult, kalan = tableau.filter(c => c.loc === 't').length;
+  const rows = [['Kaldırılan kart', (28 - kalan) + ' / 28'], ['En uzun seri', String(handMax)]];
+  let bonus = 0;
+  if (why === 'temiz') {
+    const b1 = 500*m, b2 = stock.length*50*m, b3 = Math.floor(timeLeft)*5*m;
+    bonus = b1 + b2 + b3;
+    rows.push(['Vadi bonusu', '+' + b1], ['Kalan deste (' + stock.length + ')', '+' + b2], ['Kalan süre', '+' + b3]);
+    addPts(bonus, W/2, L.py + L.ch, 'Vadi temiz! +' + bonus, '#3bc4b8');
+    burst(W/2, L.py + L.ch, 60, ['#3bc4b8','#ffc861','#ff8fa3','#fff'], 1.8);
+  }
+  rows.push(['Bu el', '+' + handPts]);
+  handLog.push({ hand, pts: handPts, why });
+  sfx.bitti(why === 'temiz');
+  const title = why === 'temiz' ? 'Vadi temizlendi!' : why === 'sure' ? 'Süre doldu' : 'Hamle kalmadı';
+  setTimeout(() => {
+    if (hand >= ELLER.length) return gameOver(title, rows);
+    $('araBaslik').textContent = hand + '. el · ' + title;
+    $('araSatir').innerHTML = rows.map((r, i) => `<div class="${i === rows.length-1 ? 'tp' : ''}"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('') +
+      `<div class="tp"><span>Toplam</span><b>${score}</b></div>`;
+    const nx = ELLER[hand];
+    $('araNot').textContent = hand + 1 === ELLER.length
+      ? `Son el: ${nx.t} saniye, puanlar ×${nx.mult}. As ile Papaz artık bağlanmıyor!`
+      : `${hand+1}. el: ${nx.t} saniye, puanlar ×${nx.mult}.`;
+    $('bDevam').textContent = (hand + 1) + '. ele geç';
+    show('ovAra');
+  }, 1100);
+}
+function gameOver(){
+  state = 'son';
+  const rek = score > best;
+  if (rek) { best = score; lsSet(BEST_KEY, String(best)); $('best').textContent = best; }
+  $('rekor').classList.toggle('gizli', !(rek && score > 0));
+  $('sonSkor').textContent = score;
+  $('sonBest').textContent = 'En iyi: ' + best;
+  const ad = { temiz: 'temiz', sure: 'süre doldu', hamle: 'hamle bitti' };
+  $('sonSatir').innerHTML = handLog.map(h => `<div><span>${h.hand}. el <small style="color:var(--dim)">(${ad[h.why]})</small></span><b>+${h.pts}</b></div>`).join('') +
+    `<div><span>En uzun seri</span><b>${maxCombo}</b></div>`;
+  show('ovSon');
+}
+function show(id){ ['ovBasla','ovAra','ovSon'].forEach(k => $(k).classList.toggle('gizli', k !== id)); if (id) setTimeout(() => { const b = $(id).querySelector('.btn'); b && b.focus({ preventScroll: true }); }, 50); }
+function updHand(){ $('sv').innerHTML = `El <b>${hand}</b>/3 · ×${cfg().mult}`; }
+function newGame(){
+  ac();
+  hand = 1; score = 0; maxCombo = 0; handLog = []; $('sc').textContent = '0';
+  updHand(); deal(); state = 'play'; show(null); cv.focus && cv.focus();
+}
+function nextHand(){ hand++; updHand(); deal(); state = 'play'; show(null); }
+
+// ---------- giriş ----------
+function hit(x, y){
+  const list = openCards().slice().sort((a,b) => b.z - a.z);
+  for (const c of list) { const t = target(c); if (Math.abs(x - t.x) <= L.cw/2 + 2 && Math.abs(y - t.y) <= L.ch/2 + 2) return c; }
+  if (stock.length) { const w = L.cw*L.ps, h = L.ch*L.ps; if (Math.abs(x - L.sx) <= w/2 + 6 && Math.abs(y - L.pileY) <= h/2 + 6) return 'stock'; }
+  return null;
+}
+cv.addEventListener('pointerdown', e => {
+  e.preventDefault();
+  if (state !== 'play') return;
+  kbMode = false; sel = -1;
+  const h = hit(e.clientX, e.clientY);
+  if (h === 'stock') draw(); else if (h) play(h);
+});
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (state !== 'play') {
+    if ((k === 'Enter' || k === ' ') && document.activeElement && document.activeElement.classList.contains('btn')) return; // butonun kendi tıklaması
+    if (k === 'Enter' || k === ' ') { e.preventDefault(); const ov = ['ovBasla','ovAra','ovSon'].find(id => !$(id).classList.contains('gizli')); if (ov) $(ov).querySelector('.btn').click(); }
+    return;
+  }
+  const oc = openCards();
+  if (k === 'ArrowLeft' || k === 'ArrowRight' || k === 'a' || k === 'd') {
+    e.preventDefault(); kbMode = true;
+    const cur = oc.indexOf(cards[sel]);
+    let i = cur < 0 ? (k === 'ArrowLeft' || k === 'a' ? oc.length - 1 : 0) : (cur + ((k === 'ArrowLeft' || k === 'a') ? -1 : 1) + oc.length) % oc.length;
+    sel = cards.indexOf(oc[i]); tone(660, .03, 'sine', .03);
+  } else if (k === 'Enter' || k === 'ArrowUp' || k === 'w') {
+    e.preventDefault(); kbMode = true;
+    const c = cards[sel];
+    if (c && isOpen(c)) {
+      const idx = oc.indexOf(c); play(c);
+      const oc2 = openCards();
+      if (oc2.length) sel = cards.indexOf(oc2[Math.min(idx, oc2.length-1)]); else sel = -1;
+    } else if (oc.length) sel = cards.indexOf(oc[0]);
+  } else if (k === ' ' || k === 'ArrowDown' || k === 's') { e.preventDefault(); draw(); }
+});
+$('bBasla').onclick = newGame;
+$('bTekrar').onclick = newGame;
+$('bDevam').onclick = nextHand;
+$('snd').onclick = () => { muted = !muted; lsSet(SES_KEY, muted ? '0' : '1'); $('snd').textContent = muted ? '🔇' : '🔊'; if (!muted) tone(660, .1); };
+addEventListener('resize', layout);
+
+// ---------- döngü ----------
+let last = performance.now();
+function frame(ts){
+  const dt = Math.min(.05, (ts - last)/1000); last = ts; now += dt;
+  if (state === 'play') {
+    timeLeft -= dt;
+    const s = Math.ceil(timeLeft);
+    if (timeLeft <= 10 && s !== tickSec && s > 0) { tickSec = s; sfx.tik(); }
+    if (timeLeft <= 0) { timeLeft = 0; endHand('sure'); }
+  }
+  // ipucu
+  let hint = null;
+  if (state === 'play' && now - lastAct > 6) { const v = validMoves(); hint = v.length ? v[0] : (stock.length ? 'stock' : null); }
+  // kart animasyonları
+  const k = Math.min(1, dt*13);
+  for (const c of cards) {
+    if (c.wait > 0) { c.wait -= dt; continue; }
+    const t = target(c);
+    c.dx += (t.x - c.dx)*k; c.dy += (t.y - c.dy)*k; c.ds += (t.s - c.ds)*k;
+    const ft = faceTarget(c) ? 1 : 0; c.f += clamp(ft - c.f, -dt*5, dt*5);
+    if (c.shake > 0) c.shake = Math.max(0, c.shake - dt*3);
+    const g = c === hint ? (.5 + .5*Math.sin(now*6)) : 0; c.glow += (g - c.glow)*k;
+    c.sel = kbMode && state === 'play' && cards[sel] === c;
+  }
+  // çiz
+  ctx.setTransform(1,0,0,1,0,0); ctx.drawImage(bg, 0, 0);
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  for (const b of ambient) { b.x += b.vx*dt; if (b.x < -60) b.x = W + 60; if (b.x > W + 60) b.x = -60; drawBalloon(b, now); }
+  // deste ve atık alanı yuvaları
+  const pw = L.cw*L.ps, ph = L.ch*L.ps;
+  ctx.strokeStyle = 'rgba(255,240,220,.28)'; ctx.lineWidth = 2; ctx.setLineDash([6,5]);
+  rr(ctx, L.sx - pw/2, L.pileY - ph/2, pw, ph, pw*.12); ctx.stroke();
+  rr(ctx, L.wx - pw/2, L.pileY - ph/2, pw, ph, pw*.12); ctx.stroke(); ctx.setLineDash([]);
+  if (hint === 'stock') { ctx.fillStyle = `rgba(59,196,184,${.3 + .25*Math.sin(now*6)})`; rr(ctx, L.sx - pw/2 - 6, L.pileY - ph/2 - 6, pw + 12, ph + 12, pw*.12 + 6); ctx.fill(); }
+  const order = cards.slice().sort((a,b) => a.z - b.z);
+  // atıktaki eski kartları çizmeye gerek yok (en üstteki 3 yeterli)
+  const wset = new Set(waste.slice(-3));
+  for (const c of order) { if (c.loc === 'w' && !wset.has(c) && c.wait <= 0 && Math.abs(c.dx - L.wx) < 1) continue; drawCard(c, now); }
+  // bilgi şeridi
+  drawInfo(hint);
+  // balonlar
+  for (let i = balloons.length - 1; i >= 0; i--) { const b = balloons[i]; b.vy -= 18*dt; b.y += b.vy*dt; b.x += b.vx*dt; b.sz = Math.min(b.sz + dt*4, L.cw*.6); if (b.y < -80) balloons.splice(i, 1); else drawBalloon(b, now); }
+  // parçacıklar
+  for (let i = particles.length - 1; i >= 0; i--) {
+    const p = particles[i]; p.life -= dt*p.dec; if (p.life <= 0) { particles.splice(i, 1); continue; }
+    p.vy += 260*dt; p.vx *= .98; p.x += p.vx*dt; p.y += p.vy*dt;
+    ctx.globalAlpha = p.life; ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  for (let i = popups.length - 1; i >= 0; i--) {
+    const p = popups[i]; p.life -= dt*.9; if (p.life <= 0) { popups.splice(i, 1); continue; }
+    p.y -= dt*40;
+    ctx.globalAlpha = Math.min(1, p.life*2); ctx.font = `800 ${p.sz}px ${FONT}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(30,12,40,.7)'; ctx.strokeText(p.text, p.x, p.y);
+    ctx.fillStyle = p.col; ctx.fillText(p.text, p.x, p.y);
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(frame);
+}
+function drawInfo(hint){
+  const y = L.infoY, w = Math.min(L.peaksW, 520), x0 = (W - w)/2;
+  const fs = W < 420 ? 13 : 15;
+  ctx.font = `700 ${fs}px ${FONT}`; ctx.textBaseline = 'top';
+  ctx.fillStyle = '#fff6e8'; ctx.textAlign = 'left';
+  const tl = Math.max(0, Math.ceil(timeLeft));
+  ctx.fillText('⏱ ' + tl + ' sn', x0, y);
+  ctx.textAlign = 'right';
+  ctx.fillStyle = combo >= 5 ? '#3bc4b8' : '#ffc861';
+  ctx.fillText(combo > 0 ? 'Seri ' + combo : (cfg().wrap ? 'A ↔ P bağlı' : 'A ↔ P bağlı değil'), x0 + w, y);
+  ctx.textAlign = 'center'; ctx.fillStyle = 'rgba(255,246,232,.75)';
+  ctx.fillText('Deste ' + stock.length, W/2, y);
+  const by = y + fs + 8, bh = 7, frac = state === 'menu' ? 1 : clamp(timeLeft / cfg().t, 0, 1);
+  ctx.fillStyle = 'rgba(255,255,255,.14)'; rr(ctx, x0, by, w, bh, bh/2); ctx.fill();
+  const low = timeLeft < 15 && state === 'play';
+  ctx.fillStyle = low ? `rgba(232,80,91,${.75 + .25*Math.sin(now*10)})` : '#ffc861';
+  if (frac > 0) { rr(ctx, x0, by, Math.max(bh, w*frac), bh, bh/2); ctx.fill(); }
+  if (hint === 'stock') {
+    ctx.font = `700 ${fs}px ${FONT}`; ctx.fillStyle = '#3bc4b8'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    ctx.fillText('Desteden kart çek', L.sx, L.pileY + L.ch*L.ps/2 + 6);
+  }
+}
+
+// test için durum bilgisi (oynanışı etkilemez)
+window.__peri = { get state(){ return state; }, get hand(){ return hand; }, get score(){ return score; }, get stock(){ return stock.length; },
+  moves(){ return validMoves().map(c => ({ x: target(c).x, y: target(c).y })); }, pile(){ return { x: L.sx, y: L.pileY }; },
+  left(){ return tableau.filter(c => c.loc === 't').length; } };
+
+layout(); deal(); state = 'menu';
+requestAnimationFrame(t => { last = t; frame(t); });
+})();
+</script>
+</body>
+</html>
