@@ -109,5 +109,15 @@
     "oyuncu": "tek",
     "renk": "#4f2a5e",
     "kapak": "/peri-bacalari/kapak.svg"
+  },
+  {
+    "slug": "kayikci",
+    "ad": "Kayıkçı",
+    "tarih": "2026-10-24",
+    "aciklama": "Sol ve sağ küreği ritimle çekerek Boğaz'da kürek yarışına gir; şamandıra kapılarından geç, akıntıya ve geçen vapurlara dikkat et, finişe rakiplerinden önce var.",
+    "tur": "Yarış",
+    "oyuncu": "tek",
+    "renk": "#1b6f83",
+    "kapak": "/kayikci/kapak.svg"
   }
 ]
