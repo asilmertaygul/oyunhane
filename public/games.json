@@ -119,5 +119,15 @@
     "oyuncu": "tek",
     "renk": "#1b6f83",
     "kapak": "/kayikci/kapak.svg"
+  },
+  {
+    "slug": "yayla-koyu",
+    "ad": "Yayla Köyü",
+    "tarih": "2026-10-25",
+    "aciklama": "Aynı türden üç parçayı birleştirerek otu çalıya, ağacı eve, konağı kaleye çevir; keçileri sıkıştır, 70 hamlede en değerli yayla köyünü kur.",
+    "tur": "Strateji",
+    "oyuncu": "tek",
+    "renk": "#7fa992",
+    "kapak": "/yayla-koyu/kapak.svg"
   }
 ]
