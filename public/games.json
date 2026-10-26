@@ -129,5 +129,15 @@
     "oyuncu": "tek",
     "renk": "#7fa992",
     "kapak": "/yayla-koyu/kapak.svg"
+  },
+  {
+    "slug": "cayci",
+    "ad": "Çaycı",
+    "tarih": "2026-10-26",
+    "aciklama": "Demi ve suyu basılı tutarak ince belli bardağı istenen renkte, altın çizgiye kadar doldur; akış geç kesilir, taşırma!",
+    "tur": "Refleks",
+    "oyuncu": "tek",
+    "renk": "#9c2414",
+    "kapak": "/cayci/kapak.svg"
   }
 ]

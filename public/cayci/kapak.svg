@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="duvar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d1c12"/><stop offset="1" stop-color="#5a2a18"/></linearGradient>
+    <linearGradient id="tezgah" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a5230"/><stop offset="1" stop-color="#3e200f"/></linearGradient>
+    <linearGradient id="cay" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a82a14"/><stop offset=".4" stop-color="#d0472a"/><stop offset="1" stop-color="#7a1c0c"/></linearGradient>
+    <linearGradient id="celik" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d8a91"/><stop offset=".4" stop-color="#eef2f4"/><stop offset="1" stop-color="#7d8a91"/></linearGradient>
+    <clipPath id="cam"><path d="M181 255 L177 240 Q176 222 183 212 Q186 205 183 185 Q178 160 168 140 L232 140 Q222 160 217 185 Q214 205 217 212 Q224 222 223 240 L219 255 Z"/></clipPath>
+    <pattern id="cini" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#e9e2d0"/>
+      <path d="M20 4 Q34 20 20 36 Q6 20 20 4Z" fill="#2f6f8f"/>
+      <circle cx="20" cy="20" r="4.5" fill="#c0391c"/>
+      <circle cx="0" cy="0" r="6" fill="#2f6f8f"/><circle cx="40" cy="0" r="6" fill="#2f6f8f"/><circle cx="0" cy="40" r="6" fill="#2f6f8f"/><circle cx="40" cy="40" r="6" fill="#2f6f8f"/>
+    </pattern>
+  </defs>
+  <rect width="400" height="300" fill="url(#duvar)"/>
+  <rect y="200" width="400" height="40" fill="url(#cini)"/>
+  <rect y="240" width="400" height="60" fill="url(#tezgah)"/>
+  <rect y="240" width="400" height="4" fill="#a8683f"/>
+  <!-- demlik eğik -->
+  <g transform="translate(190 92) rotate(28)">
+    <path d="M-50 2 Q-18 0 -2 -4 L3 1 L-1 4 Q-20 10 -48 14Z" fill="#b9c3c9"/>
+    <path d="M-95 -28 Q-118 -6 -100 22" stroke="#2b2b2b" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M-88 -26 C-104 -16 -104 26 -82 28 L-62 28 C-40 26 -40 -16 -56 -26Z" fill="url(#celik)" stroke="rgba(0,0,0,.3)"/>
+    <ellipse cx="-72" cy="-26" rx="20" ry="5" fill="#dfe5e8" stroke="rgba(0,0,0,.3)"/>
+    <ellipse cx="-72" cy="-33" rx="5" ry="3.5" fill="#2b2b2b"/>
+  </g>
+  <!-- akış -->
+  <path d="M191 93 Q197 120 199 190" stroke="#6e1608" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- çaydanlık -->
+  <g transform="translate(300 120)">
+    <path d="M-40 10 Q-70 6 -84 -10 L-88 -6 Q-74 16 -42 26Z" fill="#b9c3c9"/>
+    <path d="M40 -30 Q66 0 42 34" stroke="#2b2b2b" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M-30 -36 C-62 -20 -62 46 -22 52 L22 52 C62 46 62 -20 30 -36Z" fill="url(#celik)" stroke="rgba(0,0,0,.3)"/>
+    <ellipse cx="0" cy="-36" rx="32" ry="8" fill="#dfe5e8" stroke="rgba(0,0,0,.3)"/>
+    <ellipse cx="0" cy="-46" rx="7" ry="5" fill="#2b2b2b"/>
+  </g>
+  <!-- tabak -->
+  <ellipse cx="200" cy="262" rx="66" ry="12" fill="rgba(0,0,0,.3)"/>
+  <ellipse cx="200" cy="256" rx="62" ry="12" fill="#f6f1ea"/>
+  <ellipse cx="200" cy="256" rx="56" ry="9.5" fill="none" stroke="#c0391c" stroke-width="3"/>
+  <!-- bardak -->
+  <g clip-path="url(#cam)">
+    <rect x="160" y="160" width="80" height="100" fill="url(#cay)"/>
+    <rect x="160" y="158" width="80" height="4" fill="#f5b38a" opacity=".5"/>
+  </g>
+  <path d="M181 255 L177 240 Q176 222 183 212 Q186 205 183 185 Q178 160 168 140 L232 140 Q222 160 217 185 Q214 205 217 212 Q224 222 223 240 L219 255 Z" fill="rgba(220,235,245,.08)" stroke="rgba(240,248,255,.85)" stroke-width="2.5"/>
+  <ellipse cx="200" cy="140" rx="32" ry="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+  <path d="M178 150 Q186 172 188 190" stroke="rgba(255,255,255,.5)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <!-- hedef çizgisi -->
+  <path d="M172 160 L228 160" stroke="#ffd54a" stroke-width="2.5" stroke-dasharray="6 4"/>
+  <path d="M152 154 L163 160 L152 166Z M248 154 L237 160 L248 166Z" fill="#ffd54a"/>
+  <!-- buhar -->
+  <g fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4" stroke-linecap="round">
+    <path d="M190 132 q-8 -12 0 -24 q8 -12 0 -24"/>
+    <path d="M212 128 q8 -12 0 -24 q-8 -12 0 -22"/>
+  </g>
+  <!-- yıldızlar -->
+  <g fill="#ffd54a"><path d="M262 172 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3Z"/><path d="M130 196 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2Z"/></g>
+</svg>
