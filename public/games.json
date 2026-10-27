@@ -139,5 +139,15 @@
     "oyuncu": "tek",
     "renk": "#9c2414",
     "kapak": "/cayci/kapak.svg"
+  },
+  {
+    "slug": "kok-boya",
+    "ad": "Kök Boya",
+    "tarih": "2026-10-27",
+    "aciklama": "Kilimin sol üst köşesindeki boyayı renk renk değiştir, aynı renkteki komşuları yutarak yayıl; hamlelerin bitmeden bütün kilimi tek renge boya.",
+    "tur": "Bulmaca",
+    "oyuncu": "tek",
+    "renk": "#4a2419",
+    "kapak": "/kok-boya/kapak.svg"
   }
 ]
