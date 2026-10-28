@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <radialGradient id="toprak" cx="50%" cy="45%" r="75%">
+      <stop offset="0" stop-color="#a06c42"/><stop offset=".6" stop-color="#8a5a34"/><stop offset="1" stop-color="#5e3a1f"/>
+    </radialGradient>
+    <radialGradient id="kirmizi" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffc0c4"/><stop offset=".5" stop-color="#e8505b"/><stop offset="1" stop-color="#7d1f27"/></radialGradient>
+    <radialGradient id="mavi" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#c4e8f8"/><stop offset=".5" stop-color="#3fa7d6"/><stop offset="1" stop-color="#1b4f6a"/></radialGradient>
+    <radialGradient id="yesil" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#c9f2d9"/><stop offset=".5" stop-color="#59cd90"/><stop offset="1" stop-color="#1e6a43"/></radialGradient>
+    <radialGradient id="mor" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#e2d2f5"/><stop offset=".5" stop-color="#a77bd9"/><stop offset="1" stop-color="#4c2f73"/></radialGradient>
+    <radialGradient id="altin" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff2c4"/><stop offset=".5" stop-color="#f2b632"/><stop offset="1" stop-color="#8a5e12"/></radialGradient>
+    <radialGradient id="kuka" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#ffffff"/><stop offset=".4" stop-color="#dfe8ff"/><stop offset=".8" stop-color="#8aa2e6"/><stop offset="1" stop-color="#3b4c8c"/></radialGradient>
+    <linearGradient id="iz" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#dfe8ff" stop-opacity="0"/><stop offset="1" stop-color="#dfe8ff" stop-opacity=".45"/></linearGradient>
+    <g id="parlak"><ellipse cx="-5" cy="-6" rx="5" ry="3" fill="#fff" opacity=".8" transform="rotate(-35 -5 -6)"/></g>
+  </defs>
+  <rect width="400" height="300" fill="url(#toprak)"/>
+  <g fill="#5a3418" opacity=".35">
+    <circle cx="30" cy="40" r="1.5"/><circle cx="80" cy="260" r="2"/><circle cx="350" cy="50" r="1.6"/><circle cx="370" cy="240" r="2.2"/>
+    <circle cx="120" cy="30" r="1.2"/><circle cx="300" cy="280" r="1.4"/><circle cx="60" cy="150" r="1.8"/><circle cx="340" cy="150" r="1.3"/>
+  </g>
+  <g fill="#d9b48a" opacity=".5"><ellipse cx="45" cy="210" rx="4" ry="3"/><ellipse cx="355" cy="95" rx="3" ry="2.2"/><ellipse cx="260" cy="40" rx="3.5" ry="2.5"/></g>
+  <path d="M30 70 q12 -10 24 0 q-12 8 -24 0z" fill="#d9822b" transform="rotate(25 42 70)"/>
+  <path d="M340 200 q11 -9 22 0 q-11 7 -22 0z" fill="#c4501f" transform="rotate(-40 351 200)"/>
+  <path d="M90 250 q9 -7 18 0 q-9 6 -18 0z" fill="#e3b23c" transform="rotate(70 99 250)"/>
+  <!-- tebeşir halka -->
+  <ellipse cx="200" cy="140" rx="120" ry="105" fill="#c08a58" opacity=".18"/>
+  <ellipse cx="200" cy="140" rx="120" ry="105" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="7"/>
+  <ellipse cx="200" cy="140" rx="120" ry="105" fill="none" stroke="#fffaf0" stroke-opacity=".9" stroke-width="3" stroke-dasharray="16 3 7 2" stroke-linecap="round"/>
+  <!-- kuka izi -->
+  <path d="M300 285 L232 178" stroke="url(#iz)" stroke-width="20" stroke-linecap="round"/>
+  <!-- gölgeler -->
+  <g fill="#000" opacity=".3">
+    <ellipse cx="203" cy="144" rx="14" ry="12"/><ellipse cx="173" cy="128" rx="14" ry="12"/><ellipse cx="183" cy="168" rx="14" ry="12"/>
+    <ellipse cx="148" cy="98" rx="14" ry="12"/><ellipse cx="273" cy="88" rx="14" ry="12"/><ellipse cx="233" cy="182" rx="17" ry="15"/>
+    <ellipse cx="115" cy="212" rx="12" ry="10"/>
+  </g>
+  <!-- misketler -->
+  <g transform="translate(200 140)"><circle r="14" fill="url(#altin)"/><path d="M-14 0 q14 -11 28 0 q-14 -3 -28 0z" fill="#fff6d0" opacity=".8"/><use href="#parlak"/></g>
+  <g transform="translate(170 124)"><circle r="14" fill="url(#kirmizi)"/><path d="M-14 0 q14 -11 28 0 q-14 -3 -28 0z" fill="#ffe3c2" opacity=".8" transform="rotate(40)"/><use href="#parlak"/></g>
+  <g transform="translate(180 164)"><circle r="14" fill="url(#yesil)"/><path d="M-14 0 q14 -11 28 0 q-14 -3 -28 0z" fill="#fff1f1" opacity=".8" transform="rotate(-30)"/><use href="#parlak"/></g>
+  <g transform="translate(145 94)"><circle r="14" fill="url(#mavi)"/><path d="M-14 0 q14 -11 28 0 q-14 -3 -28 0z" fill="#fff4c9" opacity=".8" transform="rotate(70)"/><use href="#parlak"/></g>
+  <g transform="translate(270 84)"><circle r="14" fill="url(#mor)"/><path d="M-14 0 q14 -11 28 0 q-14 -3 -28 0z" fill="#ffe9a8" opacity=".8" transform="rotate(10)"/><use href="#parlak"/></g>
+  <!-- halkadan fırlayan misket -->
+  <g transform="translate(112 208)"><circle r="12" fill="url(#kirmizi)"/><use href="#parlak"/></g>
+  <g stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".8">
+    <path d="M96 222 l-8 6"/><path d="M100 230 l-5 9"/><path d="M90 212 l-10 1"/>
+  </g>
+  <!-- kuka -->
+  <g transform="translate(230 178)">
+    <circle r="17" fill="url(#kuka)"/>
+    <g stroke="#3c5ac8" stroke-opacity=".55" stroke-width="2.6" fill="none"><path d="M0 0 q8 -7 16 0"/><path d="M0 0 q-2 10 -9 14" /><path d="M0 0 q-9 -3 -13 -10"/></g>
+    <ellipse cx="-6" cy="-7" rx="6" ry="3.5" fill="#fff" opacity=".85" transform="rotate(-35 -6 -7)"/>
+  </g>
+  <g stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M214 162 l-7 -7"/><path d="M220 158 l-2 -9"/><path d="M211 170 l-9 -2"/></g>
+</svg>

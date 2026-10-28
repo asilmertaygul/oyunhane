@@ -149,5 +149,15 @@
     "oyuncu": "tek",
     "renk": "#4a2419",
     "kapak": "/kok-boya/kapak.svg"
+  },
+  {
+    "slug": "misket",
+    "ad": "Misket",
+    "tarih": "2026-10-28",
+    "aciklama": "Kukanı sapan gibi geri çekip bırak, tebeşir halkadaki misketleri dışarı fırlat; her atışı kukanın durduğu yerden yap, boş atış hak götürür, el el daralan halkayı temizle.",
+    "tur": "Fizik",
+    "oyuncu": "tek",
+    "renk": "#8a5a34",
+    "kapak": "/misket/kapak.svg"
   }
 ]
