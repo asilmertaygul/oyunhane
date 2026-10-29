@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="z" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a3a7c"/><stop offset="1" stop-color="#0a1531"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f7ee0"/><stop offset=".55" stop-color="#1f4fb5"/><stop offset="1" stop-color="#123577"/></linearGradient>
+    <linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fd6d2"/><stop offset=".55" stop-color="#26a9a6"/><stop offset="1" stop-color="#14706e"/></linearGradient>
+    <linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0735c"/><stop offset=".55" stop-color="#cf3f2c"/><stop offset="1" stop-color="#82241a"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5cbf86"/><stop offset=".55" stop-color="#2f8f5b"/><stop offset="1" stop-color="#1b5c39"/></linearGradient>
+    <linearGradient id="a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd981"/><stop offset=".55" stop-color="#e7a93a"/><stop offset="1" stop-color="#9a6a17"/></linearGradient>
+    <linearGradient id="p" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe39a"/><stop offset=".45" stop-color="#e2a743"/><stop offset="1" stop-color="#8a5a1c"/></linearGradient>
+    <radialGradient id="top" cx=".38" cy=".35" r=".7"><stop offset="0" stop-color="#fff"/><stop offset=".6" stop-color="#e8f0ff"/><stop offset="1" stop-color="#8fa7d6"/></radialGradient>
+    <radialGradient id="isik" cx=".5" cy="1.1" r=".7"><stop offset="0" stop-color="#f2b84b" stop-opacity=".3"/><stop offset="1" stop-color="#f2b84b" stop-opacity="0"/></radialGradient>
+    <g id="cb"><rect width="38" height="24" rx="5" fill="url(#b)"/><rect x="2.5" y="2.5" width="33" height="19" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".55"/><g fill="#fbf6ea" transform="translate(19 12)"><ellipse cx="0" cy="-4.2" rx="2.3" ry="4"/><ellipse cx="0" cy="4.2" rx="2.3" ry="4"/><ellipse cx="-4.2" cy="0" rx="4" ry="2.3"/><ellipse cx="4.2" cy="0" rx="4" ry="2.3"/></g></g>
+    <g id="ct"><rect width="38" height="24" rx="5" fill="url(#t)"/><rect x="2.5" y="2.5" width="33" height="19" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".55"/><path d="M19 5l7 7-7 7-7-7z" fill="#fbf6ea"/><path d="M19 8.5l3.5 3.5-3.5 3.5-3.5-3.5z" fill="#26a9a6"/></g>
+    <g id="cr"><rect width="38" height="24" rx="5" fill="url(#r)"/><rect x="2.5" y="2.5" width="33" height="19" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".55"/><path d="M19 20q-8-5-6-13l3.5 3.5L19 4l2.5 6.5L25 7q2 8-6 13z" fill="#fbf6ea"/></g>
+    <g id="cg"><rect width="38" height="24" rx="5" fill="url(#g)"/><rect x="2.5" y="2.5" width="33" height="19" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".55"/><ellipse cx="19" cy="12" rx="10" ry="4.2" transform="rotate(-28 19 12)" fill="#fbf6ea"/></g>
+    <g id="ca"><rect width="38" height="24" rx="5" fill="url(#a)"/><rect x="2.5" y="2.5" width="33" height="19" rx="3.5" fill="none" stroke="#fff" stroke-opacity=".55"/><g fill="#fff7dc" transform="translate(19 12)"><rect x="-5.5" y="-5.5" width="11" height="11" transform="rotate(45)"/><rect x="-5.5" y="-5.5" width="11" height="11"/></g><circle cx="19" cy="12" r="2.6" fill="#e7a93a"/></g>
+  </defs>
+  <rect width="400" height="300" fill="url(#z)"/>
+  <rect width="400" height="300" fill="url(#isik)"/>
+  <g fill="#3cc8c4" fill-opacity=".35">
+    <path d="M10 10l5 5-5 5-5-5z"/><path d="M30 10l5 5-5 5-5-5z"/><path d="M50 10l5 5-5 5-5-5z"/><path d="M70 10l5 5-5 5-5-5z"/><path d="M90 10l5 5-5 5-5-5z"/><path d="M110 10l5 5-5 5-5-5z"/><path d="M130 10l5 5-5 5-5-5z"/><path d="M150 10l5 5-5 5-5-5z"/><path d="M170 10l5 5-5 5-5-5z"/><path d="M190 10l5 5-5 5-5-5z"/><path d="M210 10l5 5-5 5-5-5z"/><path d="M230 10l5 5-5 5-5-5z"/><path d="M250 10l5 5-5 5-5-5z"/><path d="M270 10l5 5-5 5-5-5z"/><path d="M290 10l5 5-5 5-5-5z"/><path d="M310 10l5 5-5 5-5-5z"/><path d="M330 10l5 5-5 5-5-5z"/><path d="M350 10l5 5-5 5-5-5z"/><path d="M370 10l5 5-5 5-5-5z"/><path d="M390 10l5 5-5 5-5-5z"/>
+  </g>
+  <!-- çini sıraları (x adımı 41, sol 12) -->
+  <g transform="translate(12 36)">
+    <use href="#cr" x="0"/><use href="#cr" x="41"/><use href="#ct" x="82"/><use href="#ca" x="123"/><use href="#ca" x="164"/><use href="#ct" x="205"/><use href="#cr" x="246"/><use href="#cr" x="287"/><use href="#cr" x="328"/>
+  </g>
+  <g transform="translate(12 65)">
+    <use href="#cb" x="0"/><use href="#ct" x="41"/><use href="#cb" x="82"/><use href="#cb" x="123"/><use href="#cb" x="164"/><use href="#cb" x="205"/><use href="#ct" x="246"/><use href="#cb" x="287"/><use href="#cb" x="328"/>
+  </g>
+  <g transform="translate(12 94)">
+    <use href="#cg" x="0"/><use href="#cb" x="41"/><use href="#cr" x="82"/><use href="#cr" x="246"/><use href="#cb" x="287"/><use href="#cg" x="328"/>
+    <!-- çatlak -->
+    <path d="M89 3l7 6-2 6 6 4M96 9l10-2 6 5" fill="none" stroke="#1e0804" stroke-opacity=".75" stroke-width="1.3"/>
+  </g>
+  <g transform="translate(12 123)">
+    <use href="#cg" x="0"/><use href="#cg" x="41"/><use href="#cg" x="287"/><use href="#cg" x="328"/>
+  </g>
+  <!-- kırılan çininin parçaları -->
+  <g>
+    <path d="M178 130l9 3-6 7z" fill="#1f4fb5"/><path d="M200 124l7-2-2 8z" fill="#4f7ee0"/>
+    <path d="M214 140l8 4-8 3z" fill="#fbf6ea"/><path d="M168 146l6-4 1 8z" fill="#123577"/>
+    <path d="M226 128l5 6-7 1z" fill="#1f4fb5"/><path d="M190 150l7 1-4 6z" fill="#fbf6ea"/>
+  </g>
+  <circle cx="199" cy="134" r="18" fill="none" stroke="#4f7ee0" stroke-opacity=".45" stroke-width="2"/>
+  <!-- top izi -->
+  <g fill="#b4dcff">
+    <circle cx="246" cy="236" r="2.5" fill-opacity=".12"/><circle cx="238" cy="222" r="3" fill-opacity=".16"/><circle cx="230" cy="208" r="3.4" fill-opacity=".2"/>
+    <circle cx="222" cy="194" r="3.8" fill-opacity=".25"/><circle cx="214" cy="180" r="4.2" fill-opacity=".3"/><circle cx="206" cy="166" r="4.6" fill-opacity=".35"/>
+  </g>
+  <circle cx="198" cy="152" r="11" fill="#cfe6ff" fill-opacity=".25"/>
+  <circle cx="198" cy="152" r="8" fill="url(#top)"/>
+  <circle cx="198" cy="152" r="4" fill="none" stroke="#1f4fb5" stroke-opacity=".7"/>
+  <!-- tepsi -->
+  <rect x="198" y="266" width="104" height="16" rx="8" fill="#000" fill-opacity=".35" transform="translate(0 4)"/>
+  <rect x="198" y="262" width="104" height="16" rx="8" fill="url(#p)"/>
+  <rect x="205" y="265" width="90" height="3" rx="1.5" fill="#fff" fill-opacity=".45"/>
+  <g fill="#6e3c0a" fill-opacity=".55"><circle cx="210" cy="273" r="1.4"/><circle cx="222" cy="273" r="1.4"/><circle cx="234" cy="273" r="1.4"/><circle cx="246" cy="273" r="1.4"/><circle cx="258" cy="273" r="1.4"/><circle cx="270" cy="273" r="1.4"/><circle cx="282" cy="273" r="1.4"/><circle cx="294" cy="273" r="1.4"/></g>
+  <!-- düşen nazar boncuğu -->
+  <circle cx="96" cy="214" r="12" fill="#2a6be0"/><circle cx="96" cy="214" r="7" fill="#fff"/><circle cx="96" cy="214" r="4.6" fill="#7fd0ff"/><circle cx="96" cy="214" r="2.3" fill="#0b1c4a"/>
+</svg>

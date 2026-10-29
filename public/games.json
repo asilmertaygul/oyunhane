@@ -159,5 +159,15 @@
     "oyuncu": "tek",
     "renk": "#8a5a34",
     "kapak": "/misket/kapak.svg"
+  },
+  {
+    "slug": "cini",
+    "ad": "Çini",
+    "tarih": "2026-10-29",
+    "aciklama": "Pirinç tepsiyle porselen topu sektir, lale ve karanfil desenli İznik çinilerini kır; topu tepsiye değdirmeden art arda kırdıkça çarpan büyür, düşen boncukları yakala.",
+    "tur": "Arcade",
+    "oyuncu": "tek",
+    "renk": "#12285a",
+    "kapak": "/cini/kapak.svg"
   }
 ]
