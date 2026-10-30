@@ -169,5 +169,15 @@
     "oyuncu": "tek",
     "renk": "#12285a",
     "kapak": "/cini/kapak.svg"
+  },
+  {
+    "slug": "yuzuk-oyunu",
+    "ad": "Yüzük Oyunu",
+    "tarih": "2026-10-30",
+    "aciklama": "Kahvehanenin eski oyunu: yüzüğün saklandığı fincanı aklında tut, pirinç tepside karışan fincanları gözünle takip et ve doğru fincanı kaldır; tur tur fincanlar çoğalır, hız artar, sahte hamleler başlar.",
+    "tur": "Hafıza",
+    "oyuncu": "tek",
+    "renk": "#5a1a20",
+    "kapak": "/yuzuk-oyunu/kapak.svg"
   }
 ]
