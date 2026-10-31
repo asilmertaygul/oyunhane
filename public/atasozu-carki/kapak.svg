@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#4a2f97"/><stop offset=".65" stop-color="#1d1340"/></radialGradient>
+    <linearGradient id="pano" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2582"/><stop offset="1" stop-color="#24165a"/></linearGradient>
+    <linearGradient id="kapali" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36d6c6"/><stop offset="1" stop-color="#1d9a8e"/></linearGradient>
+    <linearGradient id="acik" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffaf0"/><stop offset="1" stop-color="#f1e2bd"/></linearGradient>
+    <radialGradient id="gobek" cx=".35" cy=".35" r=".7"><stop offset="0" stop-color="#fff3b8"/><stop offset="1" stop-color="#d99a1a"/></radialGradient>
+    <pattern id="ampul" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.3" fill="#ffe08a"/></pattern>
+    <clipPath id="alt"><rect width="400" height="300"/></clipPath>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <g fill="#fff" opacity=".5"><circle cx="30" cy="20" r="1.5"/><circle cx="372" cy="28" r="1.5"/><circle cx="350" cy="140" r="1"/><circle cx="48" cy="150" r="1"/></g>
+  <!-- harf panosu -->
+  <rect x="34" y="18" width="332" height="118" rx="16" fill="#120a2c" transform="translate(0 6)"/>
+  <rect x="34" y="18" width="332" height="118" rx="16" fill="url(#pano)"/>
+  <rect x="34" y="18" width="332" height="118" rx="16" fill="none" stroke="url(#ampul)" stroke-width="10"/>
+  <rect x="46" y="30" width="308" height="94" rx="9" fill="#140c33"/>
+  <g transform="translate(62 44)">
+    <!-- satır 1: 4 + 6 -->
+    <g id="k"><rect width="22" height="28" rx="4" fill="url(#kapali)"/><rect y="24" width="22" height="4" rx="2" fill="#137067"/></g>
+    <use href="#k" x="26"/>
+    <rect x="52" width="22" height="28" rx="4" fill="url(#acik)"/><rect x="58" y="7" width="10" height="14" rx="2" fill="#2a1b55" opacity=".85"/>
+    <use href="#k" x="78"/>
+    <use href="#k" x="116"/><use href="#k" x="142"/>
+    <rect x="168" width="22" height="28" rx="4" fill="#ffe27a"/><rect x="174" y="7" width="10" height="14" rx="2" fill="#7a4b00" opacity=".8"/>
+    <use href="#k" x="194"/><use href="#k" x="220"/>
+    <rect x="246" width="22" height="28" rx="4" fill="url(#acik)"/><rect x="252" y="7" width="10" height="14" rx="2" fill="#2a1b55" opacity=".85"/>
+    <!-- satır 2 -->
+    <g transform="translate(26 36)">
+      <use href="#k"/><rect x="26" width="22" height="28" rx="4" fill="url(#acik)"/><rect x="32" y="7" width="10" height="14" rx="2" fill="#2a1b55" opacity=".85"/>
+      <use href="#k" x="52"/>
+      <use href="#k" x="90"/><use href="#k" x="116"/><use href="#k" x="142"/>
+      <rect x="168" width="22" height="28" rx="4" fill="url(#acik)"/><rect x="174" y="7" width="10" height="14" rx="2" fill="#2a1b55" opacity=".85"/>
+      <use href="#k" x="194"/>
+    </g>
+  </g>
+  <!-- çark -->
+  <g clip-path="url(#alt)">
+    <g transform="translate(200 318)">
+      <circle r="160" fill="#000" opacity=".3" transform="translate(0 4)"/>
+      <circle r="160" fill="#f5c542"/>
+      <g stroke="#fff6e0" stroke-width="1.5">
+        <path d="M0 0L150 0A150 150 0 0 0 138.6 -57.4Z" fill="#ef5d60"/>
+        <path d="M0 0L138.6 -57.4A150 150 0 0 0 106.1 -106.1Z" fill="#f5a742"/>
+        <path d="M0 0L106.1 -106.1A150 150 0 0 0 57.4 -138.6Z" fill="#2ec4b6"/>
+        <path d="M0 0L57.4 -138.6A150 150 0 0 0 0 -150Z" fill="#7b5cd6"/>
+        <path d="M0 0L0 -150A150 150 0 0 0 -57.4 -138.6Z" fill="#15102a"/>
+        <path d="M0 0L-57.4 -138.6A150 150 0 0 0 -106.1 -106.1Z" fill="#3a86ff"/>
+        <path d="M0 0L-106.1 -106.1A150 150 0 0 0 -138.6 -57.4Z" fill="#46b96b"/>
+        <path d="M0 0L-138.6 -57.4A150 150 0 0 0 -150 0Z" fill="#e76fb3"/>
+      </g>
+      <g fill="#fff3b0">
+        <circle cx="155" cy="0" r="3"/><circle cx="143.2" cy="-59.3" r="3"/><circle cx="109.6" cy="-109.6" r="3"/><circle cx="59.3" cy="-143.2" r="3"/>
+        <circle cx="0" cy="-155" r="3"/><circle cx="-59.3" cy="-143.2" r="3"/><circle cx="-109.6" cy="-109.6" r="3"/><circle cx="-143.2" cy="-59.3" r="3"/>
+      </g>
+      <circle r="30" fill="url(#gobek)" stroke="#7a4b00" stroke-width="4"/>
+      <path d="M0 -20L5 -6L19 -6L8 3L12 17L0 9L-12 17L-8 3L-19 -6L-5 -6Z" fill="#7a4b00"/>
+    </g>
+  </g>
+  <!-- ibre -->
+  <path d="M188 150h24l-12 26z" fill="#fff6e0" stroke="#1d1340" stroke-width="3" stroke-linejoin="round"/>
+  <!-- konfeti -->
+  <g opacity=".95">
+    <rect x="22" y="160" width="8" height="5" fill="#f5c542" transform="rotate(25 26 162)"/>
+    <rect x="360" y="170" width="8" height="5" fill="#2ec4b6" transform="rotate(-30 364 172)"/>
+    <rect x="340" y="210" width="7" height="4" fill="#ef5d60" transform="rotate(50 343 212)"/>
+    <rect x="52" y="214" width="7" height="4" fill="#e76fb3" transform="rotate(-20 55 216)"/>
+    <rect x="12" y="250" width="8" height="5" fill="#7b5cd6" transform="rotate(40 16 252)"/>
+    <rect x="378" y="255" width="7" height="4" fill="#f5a742" transform="rotate(-50 381 257)"/>
+  </g>
+</svg>

@@ -179,5 +179,15 @@
     "oyuncu": "tek",
     "renk": "#5a1a20",
     "kapak": "/yuzuk-oyunu/kapak.svg"
+  },
+  {
+    "slug": "atasozu-carki",
+    "ad": "Atasözü Çarkı",
+    "tarih": "2026-10-31",
+    "aciklama": "Çarkı çevir, çıkan puanla ünsüz söyle, puanla sesli harf al ve gizli atasözünü bildiğin an çöz; İFLAS'a ve can götüren yanlış harflere dikkat, beş turda kasayı doldur.",
+    "tur": "Kelime",
+    "oyuncu": "tek",
+    "renk": "#1d1340",
+    "kapak": "/atasozu-carki/kapak.svg"
   }
 ]
